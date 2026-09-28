@@ -60,6 +60,14 @@ for(const width of [360,390,768,1024,1440])test(`responsive ${width}px`,async({p
  else await openLayers(page);
  await page.screenshot({path:`docs/screenshots/${width}.png`,fullPage:true});
 });
+test('layer choices remain scrollable in a short desktop window',async({page})=>{
+ await page.setViewportSize({width:935,height:524});await page.goto('/');await openLayers(page);
+ const scroll=page.locator('.layer-scroll');
+ expect(await scroll.evaluate(element=>element.getBoundingClientRect().height)).toBeGreaterThan(150);
+ await scroll.evaluate(element=>{element.scrollTop=element.scrollHeight;});
+ await expect(page.getByRole('checkbox',{name:'指定避難所',exact:true})).toBeInViewport();
+ await page.screenshot({path:'docs/screenshots/layers-floating-short-window.png',fullPage:true});
+});
 
 test('aerial overlays, official point result and clean map UI',async({page})=>{
  const data=JSON.parse(readFileSync('public/data/landslide-special.geojson','utf8'));
