@@ -1,0 +1,26 @@
+[
+  {
+    "id": "aerial",
+    "title": "全国最新写真（シームレス）",
+    "publisher": "国土地理院",
+    "sourceUrl": "https://maps.gsi.go.jp/development/ichiran.html",
+    "tileUrl": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg",
+    "checkedDate": "2026-09-28",
+    "effectiveDate": null,
+    "originalCrs": "EPSG:3857 XYZ",
+    "license": "地理院タイル利用規約・画像別出典条件",
+    "notes": "撮影時期は地域別。z2-13衛星画像、z14-18航空写真等。直接配信。"
+  },
+  {
+    "id": "terrain-dem",
+    "title": "3D地形 DEM10B",
+    "publisher": "国土地理院",
+    "sourceUrl": "https://maps.gsi.go.jp/development/demtile.html",
+    "tileUrl": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png",
+    "checkedDate": "2026-09-28",
+    "effectiveDate": null,
+    "originalCrs": "EPSG:3857 XYZ",
+    "license": "地理院タイル利用規約",
+    "notes": "z1-14。符号付き24bit cmからTerrain-RGBへ表示用変換。強調1倍、欠測は描画上0m。分析には使用しない。"
+  }
+]

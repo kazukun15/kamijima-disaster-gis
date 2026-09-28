@@ -1,0 +1,157 @@
+{
+  "sourceCrs": null,
+  "adoptedWorkingCrs": "EPSG:2446",
+  "confidence": "INFERRED",
+  "reason": "Plane rectangular zone IV aligns with town land; Tokyo datum has much poorer alignment. JGD2000 and JGD2011 cannot be distinguished by this evidence. User authorized analytical introduction of a representative CRS.",
+  "candidates": [
+    {
+      "epsg": 2443,
+      "sampleCount": 2038,
+      "insideAdministrativeLand": 0,
+      "medianOutsideDistanceMetres": 438733.50809488655
+    },
+    {
+      "epsg": 2444,
+      "sampleCount": 2038,
+      "insideAdministrativeLand": 0,
+      "medianOutsideDistanceMetres": 271755.18560392235
+    },
+    {
+      "epsg": 2445,
+      "sampleCount": 2038,
+      "insideAdministrativeLand": 0,
+      "medianOutsideDistanceMetres": 433449.7298989241
+    },
+    {
+      "epsg": 2446,
+      "sampleCount": 2038,
+      "insideAdministrativeLand": 2033,
+      "medianOutsideDistanceMetres": 0.0
+    },
+    {
+      "epsg": 2447,
+      "sampleCount": 2038,
+      "insideAdministrativeLand": 0,
+      "medianOutsideDistanceMetres": 414392.39512784744
+    },
+    {
+      "epsg": 2448,
+      "sampleCount": 2038,
+      "insideAdministrativeLand": 0,
+      "medianOutsideDistanceMetres": 486026.5526432659
+    },
+    {
+      "epsg": 6672,
+      "sampleCount": 2038,
+      "insideAdministrativeLand": 2033,
+      "medianOutsideDistanceMetres": 0.0
+    },
+    {
+      "epsg": 30164,
+      "sampleCount": 2038,
+      "insideAdministrativeLand": 1279,
+      "medianOutsideDistanceMetres": 0.0
+    }
+  ],
+  "files": [
+    {
+      "file": "ikina.shp",
+      "count": 6755,
+      "null": 0,
+      "invalid": 0,
+      "duplicateGeometry": 0,
+      "sourceCrs": "None",
+      "encoding": "Shift_JIS",
+      "sourceFields": [
+        "公簿面積",
+        "分属数",
+        "台帳地目",
+        "国調",
+        "地番",
+        "字",
+        "本番",
+        "枝番",
+        "測量種別",
+        "符号",
+        "精度区分",
+        "縮尺区分",
+        "geometry"
+      ],
+      "exportedFields": [
+        "district",
+        "area",
+        "parcel",
+        "id"
+      ],
+      "repair": "shapely.make_valid"
+    },
+    {
+      "file": "iwagi.shp",
+      "count": 13113,
+      "null": 0,
+      "invalid": 0,
+      "duplicateGeometry": 0,
+      "sourceCrs": "None",
+      "encoding": "Shift_JIS",
+      "sourceFields": [
+        "公簿面積",
+        "分属数",
+        "台帳地目",
+        "国調",
+        "地番",
+        "字",
+        "本番",
+        "枝番",
+        "測量種別",
+        "符号",
+        "精度区分",
+        "縮尺区分",
+        "geometry"
+      ],
+      "exportedFields": [
+        "district",
+        "area",
+        "parcel",
+        "id"
+      ],
+      "repair": "shapely.make_valid"
+    },
+    {
+      "file": "yuge.shp",
+      "count": 20889,
+      "null": 0,
+      "invalid": 0,
+      "duplicateGeometry": 0,
+      "sourceCrs": "None",
+      "encoding": "Shift_JIS",
+      "sourceFields": [
+        "公簿面積",
+        "分属数",
+        "台帳地目",
+        "国調",
+        "地番",
+        "字",
+        "本番",
+        "枝番",
+        "測量種別",
+        "符号",
+        "精度区分",
+        "縮尺区分",
+        "geometry"
+      ],
+      "exportedFields": [
+        "district",
+        "area",
+        "parcel",
+        "id"
+      ],
+      "repair": "shapely.make_valid"
+    }
+  ],
+  "unresolved": [
+    "Authoritative datum confirmation",
+    "Survey precision",
+    "Boundary discrepancies",
+    "Uoshima and other areas absent from source ZIP"
+  ]
+}

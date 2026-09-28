@@ -1,0 +1,8 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: geolocation=(self)
+  X-Frame-Options: SAMEORIGIN
+/data/*.pmtiles
+  Content-Type: application/vnd.pmtiles
+  Cache-Control: public, max-age=3600

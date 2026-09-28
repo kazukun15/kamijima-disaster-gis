@@ -1,0 +1,347 @@
+[
+  {
+    "publishedDate": null,
+    "effectiveDate": "2016-10-31",
+    "downloadedDate": "2026-09-28",
+    "checkedDate": "2026-09-28",
+    "originalCrs": "EPSG:6668 (JGD2011)",
+    "processedFormat": "GeoJSON EPSG:4326・上島町陸域に交差する区域を抽出",
+    "originalFormat": "SHP / SHX / DBF / PRJ",
+    "license": "2016年度ページ：防災・減災を目的とした公的利用（非商用利用）に限り再配信可。2024年度ページでは愛媛県をオープンデータと掲載。過年度の条件を併記。",
+    "notes": "2016年度版 A40-16_38。2026年の最新県想定ではありません。基準日は国土数値情報の整備基準日で、県想定の公表日とは異なります。原典の浸水深区分を保持し、本アプリの配色で表示。3,332区域を抽出し形状は未簡略化・未クリップ。非交差を安全・非該当とは判定しません。",
+    "id": "tsunami",
+    "title": "津波浸水想定",
+    "category": "WATER",
+    "color": "#feb24c",
+    "publisher": "国土交通省 国土数値情報／原典：愛媛県",
+    "sourceUrl": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A40.html",
+    "status": "READY",
+    "kind": "polygon",
+    "legend": [
+      {
+        "label": "0.01m以上 〜 0.3m未満",
+        "color": "#ffffb2"
+      },
+      {
+        "label": "0.3m以上 〜 1m未満",
+        "color": "#fed976"
+      },
+      {
+        "label": "1m以上 〜 2m未満",
+        "color": "#feb24c"
+      },
+      {
+        "label": "2m以上 〜 3m未満",
+        "color": "#fd8d3c"
+      },
+      {
+        "label": "3m以上 〜 4m未満",
+        "color": "#f03b20"
+      },
+      {
+        "label": "4m以上 〜 5m未満",
+        "color": "#bd0026"
+      }
+    ],
+    "hazardKind": "tsunami",
+    "url": "/data/tsunami.geojson",
+    "coverageVerified": false
+  },
+  {
+    "publishedDate": null,
+    "effectiveDate": null,
+    "downloadedDate": null,
+    "checkedDate": "2026-09-28",
+    "originalCrs": "EPSG:3857",
+    "processedFormat": "原典タイルを直接表示",
+    "originalFormat": "XYZ PNG",
+    "license": "国土地理院コンテンツ利用規約・ハザードマップポータル利用規約",
+    "notes": "画像表示のみ。透明・空白部分から非該当や収録範囲を判定しません。配信反映には遅れがあり、基準日は原典で確認してください。",
+    "id": "surge",
+    "title": "高潮浸水想定",
+    "category": "WATER",
+    "color": "#4368a5",
+    "publisher": "国土交通省・都道府県／国土地理院配信",
+    "sourceUrl": "https://disaportaldata.gsi.go.jp/hazardmap/copyright/opendata.html",
+    "status": "DISPLAY_ONLY",
+    "kind": "raster",
+    "legend": [],
+    "hazardKind": "surge",
+    "url": "https://disaportaldata.gsi.go.jp/raster/03_hightide_l2_shinsuishin_data/{z}/{x}/{y}.png",
+    "legendUrl": "https://disaportaldata.gsi.go.jp/hazardmap/copyright/img/shinsui_legend3.png"
+  },
+  {
+    "publishedDate": null,
+    "effectiveDate": null,
+    "downloadedDate": null,
+    "checkedDate": "2026-09-28",
+    "originalCrs": "EPSG:3857",
+    "processedFormat": "原典タイルを直接表示",
+    "originalFormat": "XYZ PNG",
+    "license": "国土地理院コンテンツ利用規約・ハザードマップポータル利用規約",
+    "notes": "画像表示のみ。透明・空白部分から非該当や収録範囲を判定しません。配信反映には遅れがあり、基準日は原典で確認してください。",
+    "id": "flood",
+    "title": "洪水浸水想定（想定最大規模）",
+    "category": "WATER",
+    "color": "#4368a5",
+    "publisher": "国土交通省・都道府県／国土地理院配信",
+    "sourceUrl": "https://disaportaldata.gsi.go.jp/hazardmap/copyright/opendata.html",
+    "status": "DISPLAY_ONLY",
+    "kind": "raster",
+    "legend": [],
+    "hazardKind": "flood",
+    "url": "https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin_data/{z}/{x}/{y}.png",
+    "legendUrl": "https://disaportaldata.gsi.go.jp/hazardmap/copyright/img/shinsui_legend3.png"
+  },
+  {
+    "publishedDate": "2026-07-26",
+    "effectiveDate": "2026-02-16",
+    "downloadedDate": null,
+    "checkedDate": "2026-09-28",
+    "originalCrs": "不明",
+    "processedFormat": "未加工",
+    "originalFormat": "ZIP（GISデータ）",
+    "license": "CC BY-NC-ND（配布カタログ表記）",
+    "notes": "原典の公開を確認。非営利・改変禁止条件と座標変換・クリッピング後の再配布可否を確認するまで取り込み保留。",
+    "id": "intensity",
+    "title": "想定震度",
+    "category": "EARTHQUAKE",
+    "color": "#8f719c",
+    "publisher": "愛媛県",
+    "sourceUrl": "https://www.pref.ehime.jp/opendata-catalog/dataset/3790.html",
+    "status": "DATA_SOURCE_PENDING",
+    "kind": "pending",
+    "legend": [],
+    "hazardKind": "intensity"
+  },
+  {
+    "publishedDate": "2026-07-26",
+    "effectiveDate": "2026-02-16",
+    "downloadedDate": null,
+    "checkedDate": "2026-09-28",
+    "originalCrs": "不明",
+    "processedFormat": "未加工",
+    "originalFormat": "ZIP（GISデータ）",
+    "license": "CC BY-NC-ND（配布カタログ表記）",
+    "notes": "原典の公開を確認。非営利・改変禁止条件と座標変換・クリッピング後の再配布可否を確認するまで取り込み保留。",
+    "id": "liquefaction",
+    "title": "液状化危険度",
+    "category": "EARTHQUAKE",
+    "color": "#8f719c",
+    "publisher": "愛媛県",
+    "sourceUrl": "https://www.pref.ehime.jp/opendata-catalog/dataset/3790.html",
+    "status": "DATA_SOURCE_PENDING",
+    "kind": "pending",
+    "legend": [],
+    "hazardKind": "liquefaction"
+  },
+  {
+    "publishedDate": "2026-07-26",
+    "effectiveDate": "2026-02-16",
+    "downloadedDate": null,
+    "checkedDate": "2026-09-28",
+    "originalCrs": "不明",
+    "processedFormat": "未加工",
+    "originalFormat": "ZIP（GISデータ）",
+    "license": "CC BY-NC-ND（配布カタログ表記）",
+    "notes": "原典の公開を確認。非営利・改変禁止条件と座標変換・クリッピング後の再配布可否を確認するまで取り込み保留。",
+    "id": "settlement",
+    "title": "液状化沈下量",
+    "category": "EARTHQUAKE",
+    "color": "#8f719c",
+    "publisher": "愛媛県",
+    "sourceUrl": "https://www.pref.ehime.jp/opendata-catalog/dataset/3790.html",
+    "status": "DATA_SOURCE_PENDING",
+    "kind": "pending",
+    "legend": [],
+    "hazardKind": "liquefaction"
+  },
+  {
+    "publishedDate": null,
+    "effectiveDate": null,
+    "downloadedDate": "2026-09-28",
+    "checkedDate": "2026-09-28",
+    "originalCrs": "EPSG:2446 (JGD2000 / Japan Plane Rectangular CS IV)",
+    "processedFormat": "GeoJSON EPSG:4326",
+    "originalFormat": "SHP / SHX / DBF / PRJ",
+    "license": "えひめ土砂災害情報マップ利用上の注意（商用利用は県の許可が必要）",
+    "notes": "上島町を指定して全3現象を取得。基準日は各区域の告示日。行政界と区域境界には位置精度差があります。収録範囲の完全性は未確認のため、区域外を「非該当」とは判定しません。",
+    "id": "landslide-warning",
+    "title": "土砂災害警戒区域",
+    "category": "LANDSLIDE",
+    "color": "#edbb46",
+    "publisher": "愛媛県（えひめ土砂災害情報マップ）",
+    "sourceUrl": "https://www.sabo.pref.ehime.jp/map/GisDownload.aspx",
+    "status": "READY",
+    "kind": "polygon",
+    "legend": [
+      {
+        "label": "土砂災害警戒区域",
+        "color": "#edbb46"
+      }
+    ],
+    "hazardKind": "landslide",
+    "url": "/data/landslide-warning.geojson",
+    "coverageVerified": false
+  },
+  {
+    "publishedDate": null,
+    "effectiveDate": null,
+    "downloadedDate": "2026-09-28",
+    "checkedDate": "2026-09-28",
+    "originalCrs": "EPSG:2446 (JGD2000 / Japan Plane Rectangular CS IV)",
+    "processedFormat": "GeoJSON EPSG:4326",
+    "originalFormat": "SHP / SHX / DBF / PRJ",
+    "license": "えひめ土砂災害情報マップ利用上の注意（商用利用は県の許可が必要）",
+    "notes": "上島町を指定して全3現象を取得。基準日は各区域の告示日。行政界と区域境界には位置精度差があります。収録範囲の完全性は未確認のため、区域外を「非該当」とは判定しません。",
+    "id": "landslide-special",
+    "title": "土砂災害特別警戒区域",
+    "category": "LANDSLIDE",
+    "color": "#d55448",
+    "publisher": "愛媛県（えひめ土砂災害情報マップ）",
+    "sourceUrl": "https://www.sabo.pref.ehime.jp/map/GisDownload.aspx",
+    "status": "READY",
+    "kind": "polygon",
+    "legend": [
+      {
+        "label": "土砂災害特別警戒区域",
+        "color": "#d55448"
+      }
+    ],
+    "hazardKind": "landslide",
+    "url": "/data/landslide-special.geojson",
+    "coverageVerified": false
+  },
+  {
+    "publishedDate": null,
+    "effectiveDate": "2026-01-01",
+    "downloadedDate": "2026-09-28",
+    "checkedDate": "2026-09-28",
+    "originalCrs": "EPSG:6668 (JGD2011)",
+    "processedFormat": "GeoJSON EPSG:4326",
+    "originalFormat": "SHP",
+    "license": "CC BY 4.0 / 国土数値情報利用約款",
+    "notes": "2026年1月1日基準。国土数値情報・行政区域からN03_007=38356を抽出。海域の管轄境界を示すものではありません。二次利用時は国土地理院への申請が必要となる場合があります。",
+    "id": "boundary",
+    "title": "行政区域",
+    "category": "BASE",
+    "color": "#267a76",
+    "publisher": "国土交通省",
+    "sourceUrl": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-2026.html",
+    "status": "READY",
+    "kind": "polygon",
+    "legend": [
+      {
+        "label": "上島町の行政区域（陸域）",
+        "color": "#267a76"
+      }
+    ],
+    "url": "/data/boundary.geojson"
+  },
+  {
+    "publishedDate": "2026-09-28",
+    "effectiveDate": "2026-01-01",
+    "downloadedDate": "2026-09-28",
+    "checkedDate": "2026-09-28",
+    "originalCrs": "不明",
+    "processedFormat": "PMTiles EPSG:3857 / GeoJSON EPSG:4326",
+    "originalFormat": "SHP / SHX / DBF / CPG（PRJなし）",
+    "license": "CC BY 4.0",
+    "notes": "40,757筆。原典PRJなし。行政界照合で整合した第IV系を推定採用（作業CRS EPSG:2446）。JGD2000/JGD2011の確定はできていません。15倍ズーム以上で表示。生名・岩城・弓削の公開分のみ。所有者・課税情報は非収録。境界・権利の証明や筆別の精密判断には使用できません。",
+    "id": "cadastral",
+    "title": "地籍図（参考）",
+    "category": "BASE",
+    "color": "#7c7189",
+    "publisher": "上島町",
+    "sourceUrl": "https://www.town.kamijima.lg.jp/site/opendata/",
+    "status": "READY",
+    "kind": "pmtiles",
+    "legend": [
+      {
+        "label": "地籍境界（推定CRS・参考）",
+        "color": "#7c7189"
+      }
+    ],
+    "url": "/data/cadastral.pmtiles",
+    "sourceLayer": "cadastral",
+    "minzoom": 15
+  },
+  {
+    "publishedDate": null,
+    "effectiveDate": null,
+    "downloadedDate": null,
+    "checkedDate": "2026-09-28",
+    "originalCrs": "EPSG:3857",
+    "processedFormat": "原典タイル",
+    "originalFormat": "地理院タイル",
+    "license": "国土地理院コンテンツ利用規約",
+    "notes": "地形の陰影表示。数値標高は地点選択時にDEM10Bを取得。測量値ではありません。",
+    "id": "elevation",
+    "title": "標高・陰影起伏",
+    "category": "BASE",
+    "color": "#809b79",
+    "publisher": "国土地理院",
+    "sourceUrl": "https://maps.gsi.go.jp/development/ichiran.html",
+    "status": "DISPLAY_ONLY",
+    "kind": "raster",
+    "legend": [
+      {
+        "label": "陰影（標高値は地点情報に表示）",
+        "color": "#809b79"
+      }
+    ],
+    "url": "https://cyberjapandata.gsi.go.jp/xyz/hillshademap/{z}/{x}/{y}.png"
+  },
+  {
+    "publishedDate": null,
+    "effectiveDate": null,
+    "downloadedDate": "2026-09-28",
+    "checkedDate": "2026-09-28",
+    "originalCrs": "EPSG:4326",
+    "processedFormat": "GeoJSON EPSG:4326・町住所抽出",
+    "originalFormat": "GeoJSON tiles (z10)",
+    "license": "国土地理院コンテンツ利用規約・指定緊急避難場所等の利用上の注意",
+    "notes": "各市町村の登録情報。随時更新され、未掲載・更新遅延があります。最新の指定・開設状況は町に確認してください。",
+    "id": "emergency",
+    "title": "指定緊急避難場所",
+    "category": "FACILITY",
+    "color": "#087e80",
+    "publisher": "上島町登録／国土地理院配信",
+    "sourceUrl": "https://www.gsi.go.jp/bousaichiri/hinanbasho",
+    "status": "READY",
+    "kind": "point",
+    "legend": [
+      {
+        "label": "指定緊急避難場所",
+        "color": "#087e80"
+      }
+    ],
+    "url": "/data/emergency.geojson"
+  },
+  {
+    "publishedDate": null,
+    "effectiveDate": null,
+    "downloadedDate": "2026-09-28",
+    "checkedDate": "2026-09-28",
+    "originalCrs": "EPSG:4326",
+    "processedFormat": "GeoJSON EPSG:4326・町住所抽出",
+    "originalFormat": "GeoJSON tiles (z10)",
+    "license": "国土地理院コンテンツ利用規約・指定緊急避難場所等の利用上の注意",
+    "notes": "各市町村の登録情報。随時更新され、未掲載・更新遅延があります。最新の指定・開設状況は町に確認してください。",
+    "id": "shelter",
+    "title": "指定避難所",
+    "category": "FACILITY",
+    "color": "#536db0",
+    "publisher": "上島町登録／国土地理院配信",
+    "sourceUrl": "https://www.gsi.go.jp/bousaichiri/hinanbasho",
+    "status": "READY",
+    "kind": "point",
+    "legend": [
+      {
+        "label": "指定避難所",
+        "color": "#536db0"
+      }
+    ],
+    "url": "/data/shelter.geojson"
+  }
+]

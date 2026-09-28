@@ -1,0 +1,38 @@
+{
+  "name": "kamijima-disaster-gis",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "e2e": "playwright test",
+    "serve": "node scripts/serve.mjs",
+    "catalog": "tsx scripts/export-catalog.ts",
+    "check:datasets": "tsx scripts/check-datasets.ts"
+  },
+  "dependencies": {
+    "@turf/turf": "^7.2.0",
+    "maplibre-gl": "^5.7.0",
+    "next": "^15.5.0",
+    "pmtiles": "^4.3.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.7",
+    "@playwright/test": "^1.55.0",
+    "@types/geojson": "^7946.0.16",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.5.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  },
+  "type": "module"
+}

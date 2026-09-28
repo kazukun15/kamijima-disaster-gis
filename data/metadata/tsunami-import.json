@@ -1,0 +1,50 @@
+{
+  "file": "A40-16_38_GML.zip",
+  "sourceUrl": "https://nlftp.mlit.go.jp/ksj/gml/data/A40/A40-16/A40-16_38_GML.zip",
+  "sha256": "f74f01c67cd5620943a746d14864209a5eec14f14dcc8a989288cd349b1ae3c1",
+  "originalCrs": "EPSG:6668",
+  "outputCrs": "EPSG:4326",
+  "datasetYear": 2016,
+  "catalogReferenceDate": "2016-10-31",
+  "downloadedDate": "2026-09-28",
+  "count": 3332,
+  "invalidBeforeRepair": 0,
+  "invalidAfterRepair": 0,
+  "selection": "Intersect with Kamijima N03 2026 land polygon. Retain full source polygons; no clipping/simplification. No claim of complete coverage.",
+  "legend": [
+    {
+      "label": "0.01m以上 〜 0.3m未満",
+      "color": "#ffffb2"
+    },
+    {
+      "label": "0.3m以上 〜 1m未満",
+      "color": "#fed976"
+    },
+    {
+      "label": "1m以上 〜 2m未満",
+      "color": "#feb24c"
+    },
+    {
+      "label": "2m以上 〜 3m未満",
+      "color": "#fd8d3c"
+    },
+    {
+      "label": "3m以上 〜 4m未満",
+      "color": "#f03b20"
+    },
+    {
+      "label": "4m以上 〜 5m未満",
+      "color": "#bd0026"
+    }
+  ],
+  "classCounts": {
+    "0.3m以上 〜 1m未満": 1522,
+    "0.01m以上 〜 0.3m未満": 1386,
+    "1m以上 〜 2m未満": 308,
+    "2m以上 〜 3m未満": 106,
+    "3m以上 〜 4m未満": 9,
+    "4m以上 〜 5m未満": 1
+  },
+  "bytes": 2200974,
+  "license": "A40 2016 page: redistribution for public disaster prevention/mitigation noncommercial use; newer catalogue lists Ehime open data. Preserve older stricter note."
+}
