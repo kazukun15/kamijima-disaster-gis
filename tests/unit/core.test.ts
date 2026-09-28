@@ -53,7 +53,7 @@ describe('Aerial background and point detail',()=>{
 describe('GSI DEM decoding for 3D terrain',()=>{
  it('decodes positive, negative and missing centimetre values',()=>{expect(decodeGsiHeight(0,0,100)).toBe(1);expect(decodeGsiHeight(255,255,156)).toBe(-1);expect(decodeGsiHeight(128,0,0)).toBeNull();});
  it('converts valid elevations and only fills missing pixels for rendering',()=>{const p=new Uint8ClampedArray([0,0,100,255,255,255,156,255,128,0,0,255]);expect(convertGsiPixels(p)).toBe(1);const height=(i:number)=>-10000+(p[i]*65536+p[i+1]*256+p[i+2])*0.1;expect(height(0)).toBeCloseTo(1);expect(height(4)).toBeCloseTo(-1);expect(height(8)).toBe(0);});
- it('restores terrain mode without interpreting arbitrary values as true',()=>{expect(parseState('terrain=1').terrain).toBe(true);expect(parseState('terrain=true').terrain).toBe(false);expect(parseState(serializeState({...initialView,terrain:true})).terrain).toBe(true);});
+ it('defaults to 3D and preserves explicit 2D or 3D links',()=>{expect(parseState('').terrain).toBe(true);expect(parseState('terrain=0').terrain).toBe(false);expect(parseState('terrain=1').terrain).toBe(true);expect(parseState('terrain=true').terrain).toBe(false);expect(parseState(serializeState({...initialView,terrain:false})).terrain).toBe(false);});
 });
 
 describe('Official tsunami polygons',()=>{
