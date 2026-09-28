@@ -2,6 +2,16 @@
 
 確認日: 2026-09-28。基準日不明を確認日で代用しません。正本は lib/registry.ts。
 
+## 徒歩到達範囲の道路網
+
+- 配布元: OpenStreetMap contributors／Geofabrik 四国抽出データ
+- URL: https://download.geofabrik.de/asia/japan/shikoku-260927.osm.pbf
+- データ取得日: 2026-09-27版（加工日: 2026-09-29）
+- 原典形式: OSM PBF、座標 WGS84
+- 加工: 上島町と周辺約5kmの歩行可能な道路・歩道等を抽出し、接続グラフ `public/data/walking-network.json` に変換。再生成手順は `scripts/build-walking-network.py`。
+- ライセンス: © OpenStreetMap contributors、Open Database License (ODbL) 1.0。利用・再配布時の表示: https://www.openstreetmap.org/copyright 。派生データベースの提供にはODbLの条件が適用されます。
+- 注意: 徒歩速度4km/h、指定1～60分の概算。通行止め、未収録の道、坂道・階段、渡船、歩行制限の最新情報を反映しません。道路上の到達可能区間を線で描画し、面状の安全区域や避難可否を示しません。
+
 ## 津波浸水想定 (tsunami)
 
 - 配布元: 国土交通省 国土数値情報／原典：愛媛県

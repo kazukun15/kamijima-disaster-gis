@@ -3,3 +3,4 @@ shapely==2.1.2
 pyproj==3.8.0
 pmtiles==3.8.1
 mapbox-vector-tile==2.2.0
+osmium==4.3.1

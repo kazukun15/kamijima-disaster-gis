@@ -2,14 +2,14 @@
 import {useEffect,useRef,useState} from 'react';
 import maplibregl, {type Map as MapInstance, type GeoJSONSource} from 'maplibre-gl';
 import {Protocol} from 'pmtiles';
-import type {FeatureCollection} from 'geojson';
+import type {FeatureCollection,LineString} from 'geojson';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import {assetUrl} from '@/lib/asset-url';
 import {layers} from '@/lib/registry';
 import {terrainProtocol} from '@/lib/terrain-protocol';
 import type {ViewState} from '@/lib/types';
 export interface MapProps {
- view:ViewState; selected:string[]; opacity:Record<string,number>; datasets:Record<string,FeatureCollection>;
+ view:ViewState; selected:string[]; opacity:Record<string,number>; datasets:Record<string,FeatureCollection>; walking:FeatureCollection<LineString>|null;
  destination:{lng:number;lat:number;zoom:number;sequence:number}|null; point:[number,number]|null;
  onSelect:(p:[number,number])=>void; onMove:(v:{lng:number;lat:number;zoom:number})=>void;
  onError:(id:string)=>void; onReady:()=>void; onTerrainMissing:()=>void; onTerrainFailure:()=>void;
@@ -73,6 +73,16 @@ export default function MapView(props:MapProps){
   // Always keep facilities and the administrative outline above filled hazard areas.
   for(const id of ['landslide-special','boundary','emergency','shelter'])if(m.getLayer(id))m.moveLayer(id);
  },[ready,props.selected,props.opacity,props.datasets,props.view.zoom,props.view.basemap]);
+ useEffect(()=>{
+  const m=map.current;if(!m||!ready)return;
+  if(!m.getSource('walking-reach')){
+   m.addSource('walking-reach',{type:'geojson',data:{type:'FeatureCollection',features:[]},attribution:'<a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'});
+   m.addLayer({id:'walking-reach-halo',type:'line',source:'walking-reach',paint:{'line-color':'#ffffff','line-width':10,'line-opacity':0.95}});
+   m.addLayer({id:'walking-reach',type:'line',source:'walking-reach',paint:{'line-color':'#b34a23','line-width':6,'line-opacity':0.95}});
+  }
+  (m.getSource('walking-reach') as GeoJSONSource).setData(props.walking??{type:'FeatureCollection',features:[]});
+  m.moveLayer('walking-reach-halo');m.moveLayer('walking-reach');
+ },[ready,props.walking,props.selected,props.datasets]);
  useEffect(()=>{
   const m=map.current;if(!m||!ready)return;
   if(props.view.terrain){

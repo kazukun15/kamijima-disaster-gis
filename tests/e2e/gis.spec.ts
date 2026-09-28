@@ -33,6 +33,22 @@ test('fresh visit starts in 3D and an explicit link keeps 2D',async({page})=>{
  await expect(page.getByRole('button',{name:'3D地形',exact:true})).toHaveAttribute('aria-pressed','false');
  await expect(page.getByTestId('map-status')).toContainText('2D');
 });
+test('walking range appears from a selected point in 3D and can be cleared',async({page})=>{
+ const network=JSON.parse(readFileSync('public/data/walking-network.json','utf8')) as {nodes:[number,number][]};
+ const [lng,lat]=network.nodes.reduce((best,node)=>Math.abs(node[0]-133.204)+Math.abs(node[1]-34.257)<Math.abs(best[0]-133.204)+Math.abs(best[1]-34.257)?node:best);
+ const requests:string[]=[];page.on('request',request=>requests.push(request.url()));
+ await page.goto('/#terrain=1');await expect(page.getByTestId('map-status')).toContainText('3D');
+ expect(requests.some(url=>url.includes('walking-network.json'))).toBe(false);
+ await page.getByRole('spinbutton',{name:'緯度'}).fill(String(lat));await page.getByRole('spinbutton',{name:'経度'}).fill(String(lng));
+ await page.getByRole('button',{name:'この地点を調べる',exact:false}).click();
+ await page.getByRole('spinbutton',{name:'徒歩時間（分）'}).fill('10');
+ await page.getByRole('button',{name:'到達範囲を表示'}).click();
+ await expect(page.locator('.walking-status')).toContainText('道路区間');
+ expect(requests.some(url=>url.includes('walking-network.json'))).toBe(true);
+ await page.screenshot({path:'docs/screenshots/walking-reach-3d.png',fullPage:true});
+ await page.getByRole('button',{name:'表示を消す'}).click();
+ await expect(page.locator('.walking-status')).toHaveCount(0);
+});
 test('scenario switches and pending data is clearly marked',async({page})=>{
  await page.goto('/');await page.getByLabel('表示プリセット',{exact:true}).selectOption('earthquake');
  await openLayers(page);

@@ -8,6 +8,7 @@ import {analyse,nearest,overlapCount,stateLabels} from '@/lib/analysis';
 import {initialView,parseState,serializeState} from '@/lib/url-state';
 import {assetUrl} from '@/lib/asset-url';
 import {elevationAt} from '@/lib/elevation';
+import {walkingReach,type WalkingNetwork,type WalkingResult} from '@/lib/walking';
 import type {Area,Facilities,HazardResult,Layer,ViewState} from '@/lib/types';
 const Map=dynamic(()=>import('./Map'),{ssr:false,loading:()=> <div className="map-loading">地図を準備しています…</div>});
 const emptyFacilities:Facilities={type:'FeatureCollection',features:[]};
@@ -22,6 +23,9 @@ export default function GIS(){
  const terrainFailure=useCallback(()=>{setView(old=>({...old,terrain:false}));setNotice('地形データを取得できないため2D表示に戻しました。');},[]);
  const [opacity,setOpacity]=useState<Record<string,number>>({boundary:100,emergency:100,shelter:100});
  const [selectedPoint,setSelectedPoint]=useState<[number,number]|null>(null),[elevation,setElevation]=useState<string>('未選択');
+ const [walkMinutes,setWalkMinutes]=useState(15),[walking,setWalking]=useState<WalkingResult|null>(null),[walkStatus,setWalkStatus]=useState('');
+ const walkingNetwork=useRef<WalkingNetwork|null>(null);
+ const walkingRequest=useRef(0);
  const [destination,setDestination]=useState<{lng:number;lat:number;zoom:number;sequence:number}|null>(null);
  const [panel,setPanel]=useState<'layers'|'details'|null>(null),[source,setSource]=useState<string|null>(null),[notice,setNotice]=useState('');
  const dialog=useRef<HTMLDialogElement>(null),[query,setQuery]=useState(''),[searchOpen,setSearchOpen]=useState(false);
@@ -51,7 +55,19 @@ export default function GIS(){
  },[selectedPoint]);
  useEffect(()=>{if(source)dialog.current?.showModal();else dialog.current?.close();},[source]);
  useEffect(()=>{if(panel!=='layers')return;const close=(event:KeyboardEvent)=>{if(event.key==='Escape')setPanel(null);};window.addEventListener('keydown',close);return()=>window.removeEventListener('keydown',close);},[panel]);
- const selectPoint=useCallback((p:[number,number])=>{setSelectedParcel(null);setSelectedPoint(p);setCoordinate({lat:p[1].toFixed(6),lng:p[0].toFixed(6)});setPanel('details');},[]);
+ const selectPoint=useCallback((p:[number,number])=>{walkingRequest.current++;setSelectedParcel(null);setSelectedPoint(p);setWalking(null);setWalkStatus('');setCoordinate({lat:p[1].toFixed(6),lng:p[0].toFixed(6)});setPanel('details');},[]);
+ const calculateWalking=async()=>{
+  if(!selectedPoint||!Number.isInteger(walkMinutes)||walkMinutes<1||walkMinutes>60){setWalkStatus('徒歩時間は1～60分の整数で指定してください。');return;}
+  const request=++walkingRequest.current;
+  setWalkStatus('歩行道路網を読み込み、計算しています…');
+  try{
+   if(!walkingNetwork.current){const response=await fetch(assetUrl('/data/walking-network.json'),{signal:AbortSignal.timeout(15000)});if(!response.ok)throw Error('network');walkingNetwork.current=await response.json() as WalkingNetwork;}
+   if(request!==walkingRequest.current)return;
+   const result=walkingReach(selectedPoint,walkMinutes,walkingNetwork.current!);
+   if(!result){setWalking(null);setWalkStatus('選択地点から100m以内に対象の歩行道路がありません。別の地点を選んでください。');return;}
+   setWalking(result);setWalkStatus(`${walkMinutes}分以内に通れる道路区間を${result.segments.toLocaleString()}本表示中。道路までの距離は約${Math.round(result.snapMeters)}mです。`);
+  }catch{if(request===walkingRequest.current){setWalking(null);setWalkStatus('道路網を読み込めませんでした。通信状態を確認して再試行してください。');}}
+ };
  const onMove=useCallback((v:{lng:number;lat:number;zoom:number})=>setView(old=>({...old,...v})),[]);
  const moveTo=(lng:number,lat:number,zoom=15)=>{setView(old=>({...old,lng,lat,zoom}));setDestination({lng,lat,zoom,sequence:Date.now()});};
  const results=useMemo<Record<string,HazardResult>>(()=>Object.fromEntries(layers.filter(l=>l.hazardKind).map(l=>[l.id,selectedPoint?analyse(l,selectedPoint,datasets[l.id] as Area|undefined,datasets.boundary as Area|undefined,loading.includes(l.id)):{state:'NOT_CHECKED' as const,reason:'地図または座標入力で地点を選択してください。',matches:0}])),[selectedPoint,datasets,loading]);
@@ -102,7 +118,7 @@ export default function GIS(){
     {errors.length>0&&<div className="layer-footer"><details><summary>一部データを表示できません（{errors.length}件）</summary><p>{errors.map(id=>layers.find(l=>l.id===id)?.title??(id==='aerial'?'航空写真':id==='terrain-dem'?'3D地形':'背景地図')).join('・')}</p><button onClick={retry}>再試行</button></details></div>}
    </aside>
    <section className="map-region" aria-label="地図と表示状態">
-    {initialized&&<Map view={view} selected={view.layers} opacity={opacity} datasets={datasets} destination={destination} point={selectedPoint} onSelect={selectPoint} onParcel={setSelectedParcel} onMove={onMove} onError={onError} onReady={()=>setMapReady(true)} onTerrainMissing={()=>setTerrainMissing(true)} onTerrainFailure={terrainFailure}/>}
+    {initialized&&<Map view={view} selected={view.layers} opacity={opacity} datasets={datasets} walking={walking?.lines??null} destination={destination} point={selectedPoint} onSelect={selectPoint} onParcel={setSelectedParcel} onMove={onMove} onError={onError} onReady={()=>setMapReady(true)} onTerrainMissing={()=>setTerrainMissing(true)} onTerrainFailure={terrainFailure}/>}
     <div className="map-top-actions"><button className="layers-trigger" aria-controls="layer-panel" aria-expanded={panel==='layers'} onClick={()=>setPanel(panel==='layers'?null:'layers')}>☷ レイヤーを選ぶ <b>{view.layers.length}</b></button><button onClick={()=>moveTo(initialView.lng,initialView.lat,initialView.zoom)}>⌖ 町全域</button><button onClick={()=>selectPoint([view.lng,view.lat])}>＋ 地点判定（中央）</button><button aria-pressed={view.terrain} onClick={()=>{setTerrainMissing(false);setView(old=>({...old,terrain:!old.terrain}));}}>{view.terrain?'2Dに戻す':'3D地形'}</button></div>
     <div className="mobile-tabs"><button aria-expanded={panel==='layers'} onClick={()=>setPanel(panel==='layers'?null:'layers')}>☷ レイヤー <b>{view.layers.length}</b></button><button aria-expanded={panel==='details'} onClick={()=>setPanel(panel==='details'?null:'details')}>⌖ 地点情報</button></div>
    </section>
@@ -113,7 +129,8 @@ export default function GIS(){
       <p>地図を選択、または緯度・経度を入力。非表示の災害区域も判定します。</p><div><label>緯度<input required aria-label="緯度" type="number" step="any" min="-85" max="85" value={coordinate.lat} onChange={e=>setCoordinate(old=>({...old,lat:e.target.value}))}/></label><label>経度<input required aria-label="経度" type="number" step="any" min="-180" max="180" value={coordinate.lng} onChange={e=>setCoordinate(old=>({...old,lng:e.target.value}))}/></label></div><button type="submit">この地点を調べる →</button>
      </form>
      {!selectedPoint?<div className="empty-detail"><div aria-hidden="true">⌖</div><h3>知ることから、備えよう。</h3><p>選んだ地点の想定区域・標高・周辺の避難施設をまとめて確認できます。</p><div className="empty-chips"><span>水害</span><span>地震</span><span>土砂災害</span></div></div>:<>
-      <section className="point-summary" aria-live="polite"><p className="eyebrow">選択した地点</p><button className="clear-point" onClick={()=>{setSelectedPoint(null);setSelectedParcel(null);}}>地点選択を解除</button><strong>{selectedPoint[1].toFixed(6)}, {selectedPoint[0].toFixed(6)}</strong>{selectedParcel&&<p className="parcel-selection">公開地籍図上の位置<br/>{String(selectedParcel.district)} {String(selectedParcel.area)} {String(selectedParcel.parcel)}<br/><small>座標系推定・参考表示。地点判定は筆全体の判定ではありません。</small></p>}<div className="elevation"><span>標高（参考）</span><b>{elevation}</b></div><small>国土地理院 DEM10B。海抜と浸水深は異なります。</small></section>
+      <section className="point-summary" aria-live="polite"><p className="eyebrow">選択した地点</p><button className="clear-point" onClick={()=>{walkingRequest.current++;setSelectedPoint(null);setSelectedParcel(null);setWalking(null);setWalkStatus('');}}>地点選択を解除</button><strong>{selectedPoint[1].toFixed(6)}, {selectedPoint[0].toFixed(6)}</strong>{selectedParcel&&<p className="parcel-selection">公開地籍図上の位置<br/>{String(selectedParcel.district)} {String(selectedParcel.area)} {String(selectedParcel.parcel)}<br/><small>座標系推定・参考表示。地点判定は筆全体の判定ではありません。</small></p>}<div className="elevation"><span>標高（参考）</span><b>{elevation}</b></div><small>国土地理院 DEM10B。海抜と浸水深は異なります。</small></section>
+      <section className="walking-panel" aria-label="徒歩到達圏分析"><h3>徒歩での到達範囲</h3><p>この地点から歩いて移動できる道路区間を目安として表示します。</p><div className="walking-controls"><label htmlFor="walking-minutes">徒歩時間（分）</label><input id="walking-minutes" type="number" min="1" max="60" step="1" value={walkMinutes} onChange={e=>{walkingRequest.current++;setWalkMinutes(Number(e.target.value));setWalking(null);setWalkStatus('');}}/><button onClick={()=>void calculateWalking()}>到達範囲を表示</button></div>{walking&&<button className="walking-clear" onClick={()=>{walkingRequest.current++;setWalking(null);setWalkStatus('');}}>表示を消す</button>}{walkStatus&&<p className="walking-status" role="status">{walkStatus}</p>}<small>歩行速度4km/hで計算。道路上の線で示す概算です。坂道・階段の負荷、通行止め、道路データの欠落は反映しません。避難の安全性や所要時間を保証するものではありません。<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a>（2026-09-27取得）。</small></section>
       <section className="overlap"><strong>{count}種類の想定区域への該当を確認</strong><p>判定できた{known}レイヤーでの結果です。未判定の情報があります。重複数は危険度ではありません。</p></section>
       <p className="analysis-capability">地点判定対応：津波（2016年度版）・土砂災害警戒区域・特別警戒区域。高潮・洪水は画像の確認のみ、震度・液状化・地盤沈下はデータ確認待ちです。</p><div className="hazard-results">{layers.filter(l=>l.hazardKind).map(l=><details key={l.id} className="hazard-result" open={results[l.id].state==='APPLICABLE'}><summary><span>{l.title}</span><b className={`state-${results[l.id].state}`}>{stateLabels[results[l.id].state]}</b></summary><p>{results[l.id].classLabel}</p><p>{results[l.id].reason}</p>{l.id==='flood'&&<p className="data-gap">上島町の洪水は配信タイル・国土数値情報2025年度版で収録を確認できません。<a href="https://www.pref.ehime.jp/site/kouzuishinsusoutei/141959.html" target="_blank" rel="noreferrer">県の2026年公表図を確認 ↗</a></p>}{l.id==='surge'&&<p className="data-gap">上島町付近の配信タイルは未取得（404）。国土数値情報の高潮データにも愛媛県の掲載を確認できません。空白を区域外とは判定しません。</p>}{l.id==='tsunami'&&<p>判定資料：国土数値情報2016年度版。最新県想定とは時点が異なります。</p>}{results[l.id].areas?.map((a,i)=><dl className="hit-area" key={i}><dt>区域名</dt><dd>{a.name}</dd><dt>現象</dt><dd>{a.phenomenon}</dd><dt>{l.id==='tsunami'?'元データ行':'区域番号'}</dt><dd>{a.areaCode}</dd>{l.id!=='tsunami'&&<><dt>告示日</dt><dd>{a.noticeDate}</dd></>}</dl>)}<code>{results[l.id].state}</code><button onClick={()=>setSource(l.id)}>出典を見る</button></details>)}</div>
       <section className="nearby"><h3>周辺の指定緊急避難場所</h3><p>直線距離順。経路・到達可否・開設状況は示しません。海を隔てた施設も含みます。</p>{nearby.map(({feature:f,km},i)=><button key={i} onClick={()=>{const [lng,lat]=f.geometry.coordinates;moveTo(lng,lat);selectPoint([lng,lat]);}}><span className="facility-symbol">↗</span><span><strong>{String(f.properties?.name)}</strong><small>{disasterNames.filter((_,n)=>Number(f.properties?.[`disaster${n+1}`])===1).join('・')||'対応災害の登録なし'}</small></span><b>{km.toFixed(2)}<small>km</small></b></button>)}{!nearby.length&&<p>施設データを取得できていません。</p>}<h3>周辺の指定避難所</h3><p>災害の危険がなくなるまで滞在する施設。緊急避難場所とは役割が異なります。</p>{nearbyShelters.map(({feature:f,km},i)=><p key={i}>{String(f.properties?.name)} · {km.toFixed(2)} km</p>)}</section>
