@@ -6,7 +6,7 @@
 
 - 配布元: OpenStreetMap contributors／Geofabrik 四国抽出データ
 - URL: https://download.geofabrik.de/asia/japan/shikoku-260927.osm.pbf
-- データ取得日: 2026-09-27版（加工日: 2026-09-29）
+- データ版: 2026-09-27、取得・加工日: 2026-09-29
 - 原典形式: OSM PBF、座標 WGS84
 - 加工: 上島町と周辺約5kmの歩行可能な道路・歩道等を抽出し、接続グラフ `public/data/walking-network.json` に変換。再生成手順は `scripts/build-walking-network.py`。
 - ライセンス: © OpenStreetMap contributors、Open Database License (ODbL) 1.0。利用・再配布時の表示: https://www.openstreetmap.org/copyright 。派生データベースの提供にはODbLの条件が適用されます。
