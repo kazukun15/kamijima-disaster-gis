@@ -13,3 +13,27 @@
 .map-top-actions{top:12px;left:12px;right:55px;flex-wrap:wrap}.map-top-actions button{font-size:12px;min-height:40px;background:white;box-shadow:0 1px 5px #173f4615}.maplibregl-ctrl-attrib{max-width:min(480px,85vw)}.layer-footer{font-size:11px;line-height:1.6}.layer-footer summary{cursor:pointer;color:#795c29}.layer-footer button{font-size:11px;margin-top:8px}.panel-intro{font-size:12px;padding-bottom:12px}.layer-meta,.legend,.opacity{font-size:11px}.hazard-result>summary{font-size:13px}.hazard-result b,.hazard-result p,.coordinate-form>p,.coordinate-form label,.safety-note p{font-size:12px}.hazard-result summary::after{content:'詳細 ▾';font-size:10px;color:var(--muted)}.hazard-result[open] summary::after{content:'詳細 ▴'}.point-summary>strong{display:block}.footer{font-size:10px}.footer>span:first-child{max-width:none}.footer-warning{color:#705420}@media(max-width:600px){.footer-warning{display:none}.footer{font-size:9px}.map-top-actions button{font-size:11px}.basemap-controls{margin-bottom:8px}.mobile-tabs button{min-height:44px}}@media print{.maplibregl-ctrl-attrib{max-width:100%}.maplibregl-ctrl-attrib-inner{display:block!important}.maplibregl-ctrl-attrib-button{display:none}}
 
 .terrain-settings{font-size:11px;margin:0 16px 12px;flex-shrink:0}.terrain-settings summary{cursor:pointer;min-height:30px;line-height:30px}.terrain-settings p{margin:8px 0}.map-top-actions button[aria-pressed=true]{background:#176c69;color:white}.maplibregl-canvas{cursor:crosshair}
+
+/* Keep the map full width and open layer choices in a generous floating panel. */
+.workspace{position:relative;grid-template-columns:minmax(0,1fr) 308px}
+.map-region{grid-column:1;grid-row:1}
+.detail-panel{grid-column:2;grid-row:1}
+.layer-panel{display:none;position:absolute;top:16px;bottom:16px;left:16px;width:min(420px,calc(100% - 32px));max-height:none;border:1px solid #bfd1cb;border-radius:14px;box-shadow:0 16px 44px #173b4533;z-index:15;overflow:hidden}
+.layer-panel.floating-open{display:flex}
+.layer-panel .mobile-close{display:block;white-space:nowrap;font-size:12px;min-height:36px;padding:6px 10px}
+.layer-panel .panel-heading{padding:16px 20px 8px}
+.layer-panel .panel-intro{line-height:1.6;padding:0 20px 12px}
+.layer-panel .layer-scroll{min-height:0}
+.layer-panel .layer-row>label{font-size:14px;min-height:42px}
+.layer-panel .category>summary{font-size:13px;min-height:44px;align-items:center}
+.layer-panel .layer-meta{font-size:11px}
+.layer-panel .opacity input{width:150px}
+.layer-panel .legend{font-size:11px}
+.map-top-actions{z-index:5}
+.map-top-actions .layers-trigger{background:#176c69;color:white;border-color:#176c69;font-weight:700}
+.map-top-actions .layers-trigger:hover{background:#125a58;color:white}
+.map-top-actions .layers-trigger b{display:inline-grid;place-items:center;min-width:22px;height:22px;margin-left:4px;border-radius:50%;background:#ffffff2b;font-size:11px}
+@media(max-width:1100px){.workspace{grid-template-columns:minmax(0,1fr) 280px}}
+@media(max-width:900px){.workspace{display:block}.layer-panel{top:auto;bottom:75px;left:12px;right:12px;width:auto;max-height:min(78dvh,720px)}.layer-panel.floating-open{display:flex}.detail-panel{position:absolute}.map-top-actions .layers-trigger{display:none}}
+@media(max-width:600px){.layer-panel{left:6px;right:6px;bottom:73px;max-height:80dvh}.layer-panel .panel-heading{padding:12px 14px 6px}.layer-panel .panel-intro{padding:0 14px 9px}.layer-panel .layer-row>label{min-height:44px}}
+@media print{.layer-panel,.layer-panel.floating-open{display:none!important}.map-top-actions{display:none!important}.workspace{display:block}.map-region{width:100%}}

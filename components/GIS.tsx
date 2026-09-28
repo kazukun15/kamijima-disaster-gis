@@ -50,6 +50,7 @@ export default function GIS(){
   return()=>{current=false;clearTimeout(timer);c.abort();};
  },[selectedPoint]);
  useEffect(()=>{if(source)dialog.current?.showModal();else dialog.current?.close();},[source]);
+ useEffect(()=>{if(panel!=='layers')return;const close=(event:KeyboardEvent)=>{if(event.key==='Escape')setPanel(null);};window.addEventListener('keydown',close);return()=>window.removeEventListener('keydown',close);},[panel]);
  const selectPoint=useCallback((p:[number,number])=>{setSelectedParcel(null);setSelectedPoint(p);setCoordinate({lat:p[1].toFixed(6),lng:p[0].toFixed(6)});setPanel('details');},[]);
  const onMove=useCallback((v:{lng:number;lat:number;zoom:number})=>setView(old=>({...old,...v})),[]);
  const moveTo=(lng:number,lat:number,zoom=15)=>{setView(old=>({...old,lng,lat,zoom}));setDestination({lng,lat,zoom,sequence:Date.now()});};
@@ -88,9 +89,9 @@ export default function GIS(){
    <div className="tools"><button onClick={geolocate}>◎ 現在地</button><button onClick={()=>void share()}>↗ 共有</button><button onClick={()=>setSource('print')}>▤ 印刷</button></div>
   </section>
   <div className="workspace">
-   <aside className={`layer-panel ${panel==='layers'?'mobile-open':''}`} aria-label="レイヤー">
-    <div className="panel-heading"><div><p className="eyebrow">MAP LAYERS</p><h2>表示する情報</h2></div><span className="counter">{view.layers.length}</span><button className="mobile-close" aria-label="レイヤーを閉じる" onClick={()=>setPanel(null)}>閉じる</button></div>
-    <p className="panel-intro">公的データを重ねて確認できます。<br/>想定区域は災害の予測ではありません。</p>
+   <aside id="layer-panel" className={`layer-panel ${panel==='layers'?'floating-open':''}`} aria-label="レイヤー" aria-hidden={panel!=='layers'}>
+    <div className="panel-heading"><div><p className="eyebrow">MAP LAYERS</p><h2>レイヤーを選ぶ</h2></div><span className="counter" aria-label={`選択中 ${view.layers.length}件`}>{view.layers.length}</span><button className="mobile-close" aria-label="レイヤーを閉じる" onClick={()=>setPanel(null)}>閉じる ×</button></div>
+    <p className="panel-intro">背景を選び、重ねたい情報にチェック。変更はすぐ地図に反映されます。</p>
     <fieldset className="basemap-controls"><legend>背景地図</legend><label><input type="radio" name="basemap" checked={view.basemap==='map'} onChange={()=>setView(old=>({...old,basemap:'map'}))}/>淡色地図</label><label><input type="radio" name="basemap" checked={view.basemap==='photo'} onChange={()=>setView(old=>({...old,basemap:'photo'}))}/>航空写真</label>{view.basemap==='photo'&&<p>広域では衛星画像、ズーム14以上では航空写真等を表示。撮影時期は場所により異なります。<a href="https://maps.gsi.go.jp/legend/seamlessphoto.pdf" target="_blank" rel="noreferrer">写真の出典・撮影時期について ↗</a></p>}</fieldset>
     <details className="terrain-settings"><summary>3D地形の使い方・出典</summary><p>国土地理院DEM10B、地形の高さは実寸（強調1倍）。右ドラッグ／Ctrl＋ドラッグ、タッチでは2本指で傾き・方位を変更できます。建物モデルは含みません。</p><p>欠測部分は描画上0mに補完します。地点の標高判定には補完値を使用しません。{terrainMissing&&'現在の表示に欠測部分を含みます。'}</p><a href="https://maps.gsi.go.jp/development/demtile.html" target="_blank" rel="noreferrer">DEM仕様・出典 ↗</a></details>
     <div className="layer-scroll">{Object.entries(categories).map(([category,title])=><details key={category} open className="category"><summary>{title}<span>{layers.filter(l=>l.category===category).length}</span></summary>{layers.filter(l=>l.category===category).map(l=><div className={`layer-item ${view.layers.includes(l.id)?'selected':''}`} key={l.id}>
@@ -102,7 +103,7 @@ export default function GIS(){
    </aside>
    <section className="map-region" aria-label="地図と表示状態">
     {initialized&&<Map view={view} selected={view.layers} opacity={opacity} datasets={datasets} destination={destination} point={selectedPoint} onSelect={selectPoint} onParcel={setSelectedParcel} onMove={onMove} onError={onError} onReady={()=>setMapReady(true)} onTerrainMissing={()=>setTerrainMissing(true)} onTerrainFailure={terrainFailure}/>}
-    <div className="map-top-actions"><button onClick={()=>moveTo(initialView.lng,initialView.lat,initialView.zoom)}>⌖ 町全域</button><button onClick={()=>selectPoint([view.lng,view.lat])}>＋ 地点判定（中央）</button><button aria-pressed={view.terrain} onClick={()=>{setTerrainMissing(false);setView(old=>({...old,terrain:!old.terrain}));}}>{view.terrain?'2Dに戻す':'3D地形'}</button></div>
+    <div className="map-top-actions"><button className="layers-trigger" aria-controls="layer-panel" aria-expanded={panel==='layers'} onClick={()=>setPanel(panel==='layers'?null:'layers')}>☷ レイヤーを選ぶ <b>{view.layers.length}</b></button><button onClick={()=>moveTo(initialView.lng,initialView.lat,initialView.zoom)}>⌖ 町全域</button><button onClick={()=>selectPoint([view.lng,view.lat])}>＋ 地点判定（中央）</button><button aria-pressed={view.terrain} onClick={()=>{setTerrainMissing(false);setView(old=>({...old,terrain:!old.terrain}));}}>{view.terrain?'2Dに戻す':'3D地形'}</button></div>
     <div className="mobile-tabs"><button aria-expanded={panel==='layers'} onClick={()=>setPanel(panel==='layers'?null:'layers')}>☷ レイヤー <b>{view.layers.length}</b></button><button aria-expanded={panel==='details'} onClick={()=>setPanel(panel==='details'?null:'details')}>⌖ 地点情報</button></div>
    </section>
    <aside className={`detail-panel ${panel==='details'?'mobile-open':''}`} aria-label="この場所の防災情報">
