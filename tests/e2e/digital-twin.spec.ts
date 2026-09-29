@@ -55,7 +55,7 @@ test('unavailable hybrid tile falls back to standard terrain',async({page})=>{
  await expect(page.getByTestId('map-status')).toContainText('3D');
 });
 test('WebGL unavailable uses a usable raster and SVG 2D map',async({page})=>{
- await page.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type:string,...args:unknown[]){if(type.includes('webgl'))return null;return original.apply(this,[type,...args] as Parameters<typeof original>);} as typeof original;});
+ await page.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(this:HTMLCanvasElement,type:string,...args:unknown[]){if(type.includes('webgl'))return null;return original.apply(this,[type,...args] as Parameters<typeof original>);} as typeof original;});
  await page.goto('/');await expect(page.getByTestId('raster-fallback')).toBeVisible();await expect(page.getByTestId('map-status')).toContainText('2D');
  await page.getByRole('button',{name:'この地点を調べる',exact:false}).click();await expect(page.locator('.point-summary')).toBeVisible();
 });
