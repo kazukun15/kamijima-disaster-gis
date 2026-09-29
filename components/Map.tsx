@@ -11,8 +11,10 @@ import {performanceMode,tilePixel,type TwinSettings} from '@/lib/digital-twin';
 import {initialView} from '@/lib/url-state';
 import {illustrativeDepth} from '@/lib/water-depth';
 import RasterFallback from './RasterFallback';
+import {facilityFeatures,facilityKinds} from '@/lib/facility-labels';
 import type {ViewState} from '@/lib/types';
 export interface MapProps {
+ onFacility:(properties:Record<string,unknown>|null)=>void;
  twin:TwinSettings;accuracy:{lng:number;lat:number;meters:number}|null;onBuilding:(properties:Record<string,unknown>|null)=>void;onTerrainFallback:()=>void;
  view:ViewState; selected:string[]; opacity:Record<string,number>; datasets:Record<string,FeatureCollection>; walking:FeatureCollection<LineString>|null;
  destination:{lng:number;lat:number;zoom:number;sequence:number}|null; point:[number,number]|null;
@@ -38,20 +40,18 @@ export default function MapView(props:MapProps){
   m.addControl(new maplibregl.NavigationControl({showCompass:true,visualizePitch:true}),'top-right');
   m.addControl(new maplibregl.ScaleControl({unit:'metric'}),'bottom-left');
   m.addControl(new maplibregl.AttributionControl({compact:true}),'bottom-right');
-  let dragged=false,drag:{x:number;y:number;bearing:number;pitch:number;shift:boolean}|null=null;
   const canvas=m.getCanvas();
-  const down=(e:PointerEvent)=>{if(e.pointerType==='mouse'&&e.button===0&&callbacks.current.view.terrain){drag={x:e.clientX,y:e.clientY,bearing:m.getBearing(),pitch:m.getPitch(),shift:e.shiftKey};dragged=false;canvas.setPointerCapture(e.pointerId);}};
-  const move=(e:PointerEvent)=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>5)dragged=true;if(dragged)m.jumpTo(drag.shift?{pitch:Math.max(0,Math.min(80,drag.pitch-dy*.3))}:{bearing:drag.bearing+dx*.3});};
-  const up=()=>{drag=null;};canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);
+  // Native MapLibre controls: drag to pan, Ctrl + left drag to rotate/pitch.
+  m.dragPan.enable();m.dragRotate.enable();
   const home=(event:KeyboardEvent)=>{if(event.key==='Home'){event.preventDefault();m.flyTo({center:[initialView.lng,initialView.lat],zoom:initialView.zoom});}};canvas.addEventListener('keydown',home);
   m.doubleClickZoom.disable();m.on('dblclick',e=>{e.preventDefault();m.flyTo({center:e.lngLat,zoom:Math.min(18,m.getZoom()+2)});});
-  m.on('click',e=>{if(dragged){dragged=false;return;}callbacks.current.onSelect([e.lngLat.lng,e.lngLat.lat]);const features=m.getLayer('cadastral')?m.queryRenderedFeatures([[e.point.x-3,e.point.y-3],[e.point.x+3,e.point.y+3]],{layers:['cadastral']}):[];callbacks.current.onParcel(features[0]?.properties??null);const buildingLayers=['buildings-3d','buildings-flat'].filter(id=>m.getLayer(id));callbacks.current.onBuilding(buildingLayers.length?m.queryRenderedFeatures(e.point,{layers:buildingLayers})[0]?.properties??null:null);});
+  m.on('click',e=>{callbacks.current.onSelect([e.lngLat.lng,e.lngLat.lat]);const facilityLayers=Object.keys(facilityKinds).filter(id=>m.getLayer(id));const hit=facilityLayers.length?m.queryRenderedFeatures([[e.point.x-8,e.point.y-8],[e.point.x+8,e.point.y+8]],{layers:facilityLayers})[0]:undefined;if(hit){const original=callbacks.current.datasets[hit.source]?.features.find(f=>f.properties?.name===hit.properties.name);callbacks.current.onFacility({...original?.properties,facilityKind:facilityKinds[hit.source]});}const features=m.getLayer('cadastral')?m.queryRenderedFeatures([[e.point.x-3,e.point.y-3],[e.point.x+3,e.point.y+3]],{layers:['cadastral']}):[];callbacks.current.onParcel(features[0]?.properties??null);const buildingLayers=['buildings-3d','buildings-flat'].filter(id=>m.getLayer(id));callbacks.current.onBuilding(buildingLayers.length?m.queryRenderedFeatures(e.point,{layers:buildingLayers})[0]?.properties??null:null);});
   m.on('moveend',()=>{const c=m.getCenter();callbacks.current.onMove({lng:c.lng,lat:c.lat,zoom:m.getZoom()});});
   m.on('error',e=>{const id=(e as typeof e & {sourceId?:string}).sourceId??'map';callbacks.current.onError(id);if(id==='terrain-dem')callbacks.current.onTerrainFailure();});
   m.on('style.load',()=>{setReady(true);callbacks.current.onReady();});
   const resize=new ResizeObserver(()=>m.resize());resize.observe(container.current);
   const printResize=()=>m.resize();window.addEventListener('beforeprint',printResize);window.addEventListener('afterprint',printResize);
-  return()=>{resize.disconnect();canvas.removeEventListener('pointerdown',down);canvas.removeEventListener('pointermove',move);canvas.removeEventListener('pointerup',up);canvas.removeEventListener('pointercancel',up);canvas.removeEventListener('keydown',home);window.removeEventListener('beforeprint',printResize);window.removeEventListener('afterprint',printResize);marker.current?.remove();m.remove();maplibregl.removeProtocol('pmtiles');maplibregl.removeProtocol('gsi-dem');maplibregl.removeProtocol('gsi-coverage');};
+  return()=>{resize.disconnect();canvas.removeEventListener('keydown',home);window.removeEventListener('beforeprint',printResize);window.removeEventListener('afterprint',printResize);marker.current?.remove();m.remove();maplibregl.removeProtocol('pmtiles');maplibregl.removeProtocol('gsi-dem');maplibregl.removeProtocol('gsi-coverage');};
  },[]);
  useEffect(()=>{
   const m=map.current;if(!m||!ready)return;
@@ -101,7 +101,7 @@ export default function MapView(props:MapProps){
   const m=map.current;if(!m||!ready)return;
   if(props.view.terrain){
    if(!m.getSource('terrain-dem'))m.addSource('terrain-dem',{type:'raster-dem',tiles:['gsi-dem://{z}/{x}/{y}'],tileSize:256,minzoom:1,maxzoom:performanceMode(callbacks.current.twin.performance)?15:17,encoding:'mapbox',attribution:'<a href="https://maps.gsi.go.jp/development/demtile.html" target="_blank">地形：国土地理院 DEM1A/5/10（表示用加工）</a>'});
-   m.setTerrain({source:'terrain-dem',exaggeration:callbacks.current.twin.exaggeration});m.easeTo({pitch:55,duration:600});m.dragPan.disable();
+   m.setTerrain({source:'terrain-dem',exaggeration:callbacks.current.twin.exaggeration});m.easeTo({pitch:55,duration:600});m.dragPan.enable();
   }else{m.setTerrain(null);m.dragPan.enable();if(m.getPitch()!==0||m.getBearing()!==0)m.easeTo({pitch:0,bearing:0,duration:400});if(m.getSource('terrain-dem'))m.removeSource('terrain-dem');}
  },[ready,props.view.terrain]);
  useEffect(()=>{
@@ -161,6 +161,25 @@ export default function MapView(props:MapProps){
   return()=>{clearInterval(timer);m.off('render',render);};
  },[ready,props.twin.debug]);
  useEffect(()=>{if(ready&&props.destination){const opts={center:[props.destination.lng,props.destination.lat] as [number,number],zoom:props.destination.zoom};if(props.view.terrain)map.current?.flyTo({...opts,duration:900});else map.current?.jumpTo(opts);}},[ready,props.destination,props.view.terrain]);
+ useEffect(()=>{
+  const m=map.current;if(!m||!ready)return;
+  let labels:maplibregl.Marker[]=[];
+  const refresh=()=>{
+   labels.forEach(label=>label.remove());labels=[];if(m.getZoom()<11.5)return;
+   const boxes:{x:number;y:number;width:number}[]=[];const {width,height}=m.getContainer().getBoundingClientRect();
+   for(const {feature,properties} of facilityFeatures(callbacks.current.datasets,callbacks.current.selected)){
+    const [lng,lat]=feature.geometry.coordinates;const p=m.project([lng,lat]);if(p.x<30||p.y<65||p.x>width-30||p.y>height-25)continue;
+    const text=String(properties?.name),w=Math.min(224,Math.max(110,text.length*13+24));
+    if(boxes.some(b=>Math.abs(b.x-p.x)<(b.width+w)/2+12&&Math.abs(b.y-p.y)<68))continue;
+    boxes.push({x:p.x,y:p.y,width:w});
+    const el=document.createElement('button');el.className='facility-landmark';el.type='button';const caption=document.createElement('span');caption.textContent=text;el.appendChild(caption);el.title=text;el.setAttribute('aria-label',text+'の施設情報');
+    el.addEventListener('click',event=>{event.stopPropagation();callbacks.current.onSelect([lng,lat]);callbacks.current.onFacility(properties);});
+    labels.push(new maplibregl.Marker({element:el,anchor:'bottom',offset:[0,-30],pitchAlignment:'viewport',rotationAlignment:'viewport',opacityWhenCovered:0}).setLngLat([lng,lat]).addTo(m));
+    if(labels.length>=(width<768?14:30))break;
+   }
+  };let timer:ReturnType<typeof setTimeout>;const schedule=()=>{clearTimeout(timer);timer=setTimeout(refresh,120);};refresh();m.on('moveend',schedule);m.on('resize',schedule);
+  return()=>{clearTimeout(timer);labels.forEach(label=>label.remove());m.off('moveend',schedule);m.off('resize',schedule);};
+ },[ready,props.datasets,props.selected]);
  useEffect(()=>{
   if(!map.current||!ready)return;marker.current?.remove();
   if(props.point)marker.current=new maplibregl.Marker({color:'#163f47'}).setLngLat(props.point).addTo(map.current);

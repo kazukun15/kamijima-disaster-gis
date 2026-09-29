@@ -1,6 +1,6 @@
 import {layers,scenarios} from './registry';
 import type {ViewState} from './types';
-export const initialView:ViewState={lat:34.245,lng:133.235,zoom:10.4,layers:['tsunami','boundary','emergency'],scenario:'custom',basemap:'map',terrain:true};
+export const initialView:ViewState={lat:34.245,lng:133.235,zoom:10.4,layers:['tsunami','boundary','emergency','public-facilities'],scenario:'custom',basemap:'map',terrain:true};
 export function parseState(search:string):ViewState{
  const p=new URLSearchParams(search.replace(/^#/,''));
  const num=(key:string,fallback:number,min:number,max:number)=>{const raw=p.get(key);const v=raw===null||raw.trim()===''?NaN:Number(raw);return Number.isFinite(v)&&v>=min&&v<=max?v:fallback;};

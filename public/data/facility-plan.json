@@ -1,0 +1,2548 @@
+{
+  "source": "https://www.town.kamijima.lg.jp/uploaded/life/19667_70461_misc.pdf",
+  "planDate": "2021-03",
+  "facilities": [
+    {
+      "id": "plan-218",
+      "name": "上島町立岩城小学校",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "校舎",
+          "department": "教育課",
+          "area": 2185.39,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和42年5月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "体育館",
+          "department": "教育課",
+          "area": 440.4,
+          "structure": "鉄骨ｺﾝｸﾘｰﾄ",
+          "built": "昭和43年4月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "校舎",
+          "department": "教育課",
+          "area": 34.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成5年2月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "宿直室棟",
+          "department": "教育課",
+          "area": 96.82,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和42年7月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "渡廊下",
+          "department": "教育課",
+          "area": 9.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和42年5月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "倉庫NO1",
+          "department": "教育課",
+          "area": 12.0,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "昭和57年8月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "倉庫NO2",
+          "department": "教育課",
+          "area": 45.0,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "昭和46年10月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "倉庫NO3",
+          "department": "教育課",
+          "area": 16.0,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "平成3年9月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "浴室",
+          "department": "教育課",
+          "area": 18.44,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "昭和45年3月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "トイレ",
+          "department": "教育課",
+          "area": 6.93,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "昭和49年1月1日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 2863.98,
+      "position": {
+        "name": "岩城小学校（体育館）",
+        "coordinates": [
+          133.13994,
+          34.245339
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町岩城2263-1",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-219",
+      "name": "上島町立岩城中学校",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "校舎",
+          "department": "教育課",
+          "area": 2796.15,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成元年2月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "倉庫NO1",
+          "department": "教育課",
+          "area": 24.04,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "平成元年2月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "倉庫NO2",
+          "department": "教育課",
+          "area": 27.3,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "平成2年9月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "部室・倉庫",
+          "department": "教育課",
+          "area": 48.97,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "平成2年9月1日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 2896.46,
+      "position": {
+        "name": "岩城中学校",
+        "coordinates": [
+          133.147791,
+          34.247645
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町岩城1218",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-220",
+      "name": "上島町立弓削小学校",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "校舎",
+          "department": "教育課",
+          "area": 3639.83,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和62年2月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "体育館",
+          "department": "教育課",
+          "area": 1058.22,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成元年3月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "倉庫及びトイレ",
+          "department": "教育課",
+          "area": 63.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成元年5月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "配膳室",
+          "department": "教育課",
+          "area": 16.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成17年8月1日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 4777.05,
+      "position": {
+        "name": "弓削小学校（体育館）",
+        "coordinates": [
+          133.200013,
+          34.267435
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町弓削引野1219",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-221",
+      "name": "上島町立弓削中学校",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "校舎",
+          "department": "教育課",
+          "area": 2572.71,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成16年8月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "部室",
+          "department": "教育課",
+          "area": 148.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成8年3月1日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 2720.71,
+      "position": null
+    },
+    {
+      "id": "plan-222",
+      "name": "上島町立魚島小学校",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "校舎",
+          "department": "教育課",
+          "area": 709.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和39年1月26日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 709.0,
+      "position": {
+        "name": "魚島小・中学校（体育館）",
+        "coordinates": [
+          133.319868,
+          34.177283
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町魚島１番耕地819",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-223",
+      "name": "上島町立魚島中学校",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "校舎",
+          "department": "教育課",
+          "area": 829.65,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成5年3月10日",
+          "pdfPage": 7
+        },
+        {
+          "name": "別館",
+          "department": "教育課",
+          "area": 176.89,
+          "structure": "鉄骨造",
+          "built": "平成6年3月30日",
+          "pdfPage": 7
+        },
+        {
+          "name": "体育館",
+          "department": "教育課",
+          "area": 438.3,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成5年3月10日",
+          "pdfPage": 7
+        },
+        {
+          "name": "校舎特別教室",
+          "department": "教育課",
+          "area": 412.23,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和54年3月20日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 1857.07,
+      "position": {
+        "name": "魚島小・中学校（体育館）",
+        "coordinates": [
+          133.319868,
+          34.177283
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町魚島１番耕地819",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-224",
+      "name": "上島町立高井神小中学校",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "校舎",
+          "department": "教育課",
+          "area": 335.0,
+          "structure": "木造",
+          "built": "昭和30年1月13日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 335.0,
+      "position": {
+        "name": "高井神小・中学校",
+        "coordinates": [
+          133.272112,
+          34.19192
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町魚島２番耕地151",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-225",
+      "name": "上島町立生名小学校",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "校舎",
+          "department": "教育課",
+          "area": 2767.56,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成4年3月25日",
+          "pdfPage": 7
+        },
+        {
+          "name": "校舎",
+          "department": "教育課",
+          "area": 6.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成4年3月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "プロパン庫・機械室棟",
+          "department": "教育課",
+          "area": 11.22,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成4年3月25日",
+          "pdfPage": 7
+        },
+        {
+          "name": "体育館",
+          "department": "教育課",
+          "area": 748.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成5年2月26日",
+          "pdfPage": 7
+        },
+        {
+          "name": "体育倉庫",
+          "department": "教育課",
+          "area": 32.0,
+          "structure": "軽量鉄骨造",
+          "built": "平成5年2月26日",
+          "pdfPage": 7
+        },
+        {
+          "name": "渡廊下",
+          "department": "教育課",
+          "area": 75.0,
+          "structure": "木造",
+          "built": "平成4年3月25日",
+          "pdfPage": 7
+        },
+        {
+          "name": "給食配膳室棟",
+          "department": "教育課",
+          "area": 9.0,
+          "structure": "木造",
+          "built": "平成17年10月25日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 3648.78,
+      "position": {
+        "name": "生名小学校（体育館）",
+        "coordinates": [
+          133.18391,
+          34.2689
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町生名965",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-226",
+      "name": "弓削学校給食センター",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "共同作業場",
+          "department": "教育課",
+          "area": 333.9,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成8年8月1日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 333.9,
+      "position": null
+    },
+    {
+      "id": "plan-232",
+      "name": "岩城学校給食センター",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "岩城学校給食センター",
+          "department": "教育課",
+          "area": 353.17,
+          "structure": "鉄骨造",
+          "built": "平成21年3月2日",
+          "pdfPage": 7
+        },
+        {
+          "name": "岩城学校給食センター",
+          "department": "教育課",
+          "area": 5.0,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "平成21年3月2日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 358.17,
+      "position": null
+    },
+    {
+      "id": "plan-227",
+      "name": "岩城教員住宅（世帯用・単身用）",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "岩城教員住宅（世帯用・単身用）",
+          "department": "教育課",
+          "area": 254.0,
+          "structure": "木造",
+          "built": "平成19年3月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "岩城教員住宅（世帯用・単身用）",
+          "department": "教育課",
+          "area": 227.0,
+          "structure": "木造",
+          "built": "平成19年3月1日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 481.0,
+      "position": null
+    },
+    {
+      "id": "plan-231",
+      "name": "生名教員住宅",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "A棟2DK 4戸",
+          "department": "教育課",
+          "area": 217.54,
+          "structure": "木造",
+          "built": "平成18年3月17日",
+          "pdfPage": 7
+        },
+        {
+          "name": "B棟2DK 4戸",
+          "department": "教育課",
+          "area": 217.54,
+          "structure": "木造",
+          "built": "平成18年3月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "C棟3DK 2戸",
+          "department": "教育課",
+          "area": 130.4,
+          "structure": "木造",
+          "built": "平成18年3月1日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 565.48,
+      "position": null
+    },
+    {
+      "id": "plan-256",
+      "name": "引野教員住宅",
+      "category": "学校教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "引野教員住宅 1棟4戸",
+          "department": "教育課",
+          "area": 241.0,
+          "structure": "木造",
+          "built": "平成23年3月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "引野教員住宅 1棟2戸",
+          "department": "教育課",
+          "area": 141.0,
+          "structure": "木造",
+          "built": "平成23年3月1日",
+          "pdfPage": 7
+        },
+        {
+          "name": "引野教員住宅 1棟4戸",
+          "department": "教育課",
+          "area": 241.0,
+          "structure": "木造",
+          "built": "平成23年3月1日",
+          "pdfPage": 7
+        }
+      ],
+      "floorArea": 623.0,
+      "position": null
+    },
+    {
+      "id": "plan-60",
+      "name": "三分団集会所",
+      "category": "住民交流文化系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "三分団集会所",
+          "department": "住民課",
+          "area": 254.25,
+          "structure": "木造",
+          "built": "平成3年5月7日",
+          "pdfPage": 8
+        },
+        {
+          "name": "倉庫",
+          "department": "住民課",
+          "area": 16.0,
+          "structure": "木造",
+          "built": "平成3年5月7日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 270.25,
+      "position": {
+        "name": "三分団集会所",
+        "coordinates": [
+          133.183043,
+          34.271289
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町生名1270",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-67",
+      "name": "下弓削地区中央集会所",
+      "category": "住民交流文化系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "下弓削地区中央集会所",
+          "department": "住民課",
+          "area": 179.54,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和51年2月10日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 179.54,
+      "position": {
+        "name": "下弓削地区中央集会所",
+        "coordinates": [
+          133.206165,
+          34.257563
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町弓削下弓削543",
+        "layer": "emergency"
+      }
+    },
+    {
+      "id": "plan-133",
+      "name": "上島町岩城構造改善センター（海原集会所）",
+      "category": "住民交流文化系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "構造改善センター（海原集会所）",
+          "department": "産業振興課",
+          "area": 214.91,
+          "structure": "鉄骨造",
+          "built": "平成3年3月20日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 214.91,
+      "position": {
+        "name": "岩城構造改善センター（海原集会所）",
+        "coordinates": [
+          133.157006,
+          34.250226
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町岩城258-5",
+        "layer": "emergency"
+      }
+    },
+    {
+      "id": "plan-4",
+      "name": "弓削開発総合センター",
+      "category": "住民交流文化系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "弓削開発総合センター",
+          "department": "総務課",
+          "area": 1141.71,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和57年7月30日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 1141.71,
+      "position": {
+        "name": "弓削開発総合センター",
+        "coordinates": [
+          133.186548,
+          34.252445
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町弓削佐島608-2",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-5",
+      "name": "生名開発総合センター",
+      "category": "住民交流文化系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "生名島開発総合センター",
+          "department": "総務課",
+          "area": 1103.32,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和56年9月1日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 1103.32,
+      "position": {
+        "name": "生名開発総合センター",
+        "coordinates": [
+          133.177855,
+          34.276879
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町生名1885",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-6",
+      "name": "岩城開発総合センター",
+      "category": "住民交流文化系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "岩城開発総合センター",
+          "department": "総務課",
+          "area": 1674.23,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和60年7月30日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 1674.23,
+      "position": {
+        "name": "岩城開発総合センター",
+        "coordinates": [
+          133.148072,
+          34.247462
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町岩城1254",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-7",
+      "name": "魚島開発総合センター",
+      "category": "住民交流文化系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "魚島開発総合センター",
+          "department": "総務課",
+          "area": 938.12,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和58年7月7日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 938.12,
+      "position": {
+        "name": "魚島開発総合センター",
+        "coordinates": [
+          133.321598,
+          34.178461
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町魚島１番耕地1362-1",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-35",
+      "name": "上島町魚島地域交流施設",
+      "category": "住民交流文化系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "魚島地域交流施設",
+          "department": "総務課",
+          "area": 471.97,
+          "structure": "鉄骨造",
+          "built": "平成27年3月15日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 471.97,
+      "position": null
+    },
+    {
+      "id": "plan-116",
+      "name": "上島町岩城コミュニティセンター",
+      "category": "住民交流文化系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "岩城コミュニティーセンター",
+          "department": "住民課",
+          "area": 313.31,
+          "structure": "鉄骨造",
+          "built": "昭和57年3月30日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 313.31,
+      "position": null
+    },
+    {
+      "id": "plan-120",
+      "name": "せとうち交流館",
+      "category": "住民交流文化系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "せとうち交流館",
+          "department": "産業振興課",
+          "area": 1569.63,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成16年9月17日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 1569.63,
+      "position": {
+        "name": "せとうち交流館",
+        "coordinates": [
+          133.201596,
+          34.259844
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町弓削下弓削1037-2",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-209",
+      "name": "上島町老人福祉センター",
+      "category": "住民交流文化系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "弓削老人福祉センター",
+          "department": "健康推進課",
+          "area": 522.47,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和59年3月10日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 522.47,
+      "position": null
+    },
+    {
+      "id": "plan-234",
+      "name": "上島町岩城郷土館",
+      "category": "社会教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "郷土館",
+          "department": "教育課",
+          "area": 321.0,
+          "structure": "木造",
+          "built": "昭和56年9月30日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 321.0,
+      "position": {
+        "name": "上島町岩城郷土館",
+        "coordinates": [
+          133.1491569625,
+          34.246064975
+        ],
+        "source": "https://www.openstreetmap.org/way/906673806"
+      }
+    },
+    {
+      "id": "plan-235",
+      "name": "弓削中央公民館",
+      "category": "社会教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "弓削中央公民館",
+          "department": "教育課",
+          "area": 519.9,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和41年10月5日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 519.9,
+      "position": null
+    },
+    {
+      "id": "plan-236",
+      "name": "高井神公民館",
+      "category": "社会教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "高井神公民館",
+          "department": "教育課",
+          "area": 344.73,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和56年3月31日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 344.73,
+      "position": {
+        "name": "高井神公民館",
+        "coordinates": [
+          133.273784,
+          34.191953
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町魚島２番耕地436",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-243",
+      "name": "魚島中央公民館",
+      "category": "社会教育系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "魚島中央公民館",
+          "department": "教育課",
+          "area": 260.07,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和58年7月7日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 260.07,
+      "position": null
+    },
+    {
+      "id": "plan-238",
+      "name": "上島町いきなスポレク公園（体育館・宿泊研修施設等）",
+      "category": "スポーツ系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "蛙石体育館",
+          "department": "教育課",
+          "area": 4234.61,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成8年9月30日",
+          "pdfPage": 8
+        },
+        {
+          "name": "屋外プール便所・機械室",
+          "department": "教育課",
+          "area": 30.69,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成8年9月30日",
+          "pdfPage": 8
+        },
+        {
+          "name": "浄化槽機械室棟",
+          "department": "教育課",
+          "area": 8.54,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "平成8年9月30日",
+          "pdfPage": 8
+        },
+        {
+          "name": "野球場トイレ棟",
+          "department": "教育課",
+          "area": 23.0,
+          "structure": "ﾌﾟﾚｷｬｽﾄｺﾝｸﾘｰﾄ",
+          "built": "平成9年1月30日",
+          "pdfPage": 8
+        },
+        {
+          "name": "蛙石荘",
+          "department": "教育課",
+          "area": 1135.37,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成8年10月15日",
+          "pdfPage": 8
+        },
+        {
+          "name": "厨房設備棟",
+          "department": "教育課",
+          "area": 19.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成9年3月28日",
+          "pdfPage": 8
+        },
+        {
+          "name": "多目的グラウンドトイレ",
+          "department": "教育課",
+          "area": 0.0,
+          "structure": "-",
+          "built": "令和3年度建設予定",
+          "pdfPage": 8
+        },
+        {
+          "name": "野球場",
+          "department": "教育課",
+          "area": 0.0,
+          "structure": "-",
+          "built": "平成9年1月30日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 5451.21,
+      "position": {
+        "name": "いきなスポレク公園",
+        "coordinates": [
+          133.1730416,
+          34.2621585
+        ],
+        "source": "https://www.town.kamijima.lg.jp/site/publicfacilities/48.html",
+        "address": "愛媛県越智郡上島町生名4528番地 お問い合わせ いきなスポレク公園管理事務所（蛙石体育館）",
+        "guideDate": "2019年10月1日"
+      }
+    },
+    {
+      "id": "plan-239",
+      "name": "上島町佐島体育館",
+      "category": "スポーツ系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "佐島体育館",
+          "department": "教育課",
+          "area": 747.23,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成元年5月1日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 747.23,
+      "position": {
+        "name": "上島町佐島体育館",
+        "coordinates": [
+          133.188898,
+          34.251767
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町弓削佐島583",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-240",
+      "name": "上島町弓削体育館",
+      "category": "スポーツ系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "弓削体育館",
+          "department": "教育課",
+          "area": 1925.8,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和57年2月18日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 1925.8,
+      "position": {
+        "name": "弓削体育館",
+        "coordinates": [
+          133.200039,
+          34.265641
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町弓削明神１地先",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-242",
+      "name": "上島町生名体育館",
+      "category": "スポーツ系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "木彫部室",
+          "department": "教育課",
+          "area": 24.42,
+          "structure": "木造",
+          "built": "平成16年9月29日",
+          "pdfPage": 8
+        },
+        {
+          "name": "旧陶芸部室",
+          "department": "教育課",
+          "area": 16.0,
+          "structure": "軽量鉄骨造",
+          "built": "平成16年9月29日",
+          "pdfPage": 8
+        },
+        {
+          "name": "陶芸部室",
+          "department": "教育課",
+          "area": 55.69,
+          "structure": "木造",
+          "built": "平成18年12月21日",
+          "pdfPage": 8
+        },
+        {
+          "name": "ゲートボール部室",
+          "department": "教育課",
+          "area": 21.0,
+          "structure": "軽量鉄骨造",
+          "built": "平成元年3月25日",
+          "pdfPage": 8
+        },
+        {
+          "name": "ゲートボール場公衆トイレ",
+          "department": "教育課",
+          "area": 18.0,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "平成元年3月25日",
+          "pdfPage": 8
+        },
+        {
+          "name": "機械室棟",
+          "department": "教育課",
+          "area": 19.47,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和56年9月1日",
+          "pdfPage": 8
+        },
+        {
+          "name": "生名体育館",
+          "department": "教育課",
+          "area": 1802.05,
+          "structure": "鉄骨造",
+          "built": "昭和55年9月1日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 1956.63,
+      "position": {
+        "name": "生名体育館",
+        "coordinates": [
+          133.181941,
+          34.271637
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町生名1283",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-244",
+      "name": "上島町岩城総合運動場（体育館・プール管理棟等）",
+      "category": "スポーツ系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "体育館",
+          "department": "教育課",
+          "area": 1060.3,
+          "structure": "鉄骨鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和52年11月25日",
+          "pdfPage": 8
+        },
+        {
+          "name": "プール管理棟",
+          "department": "教育課",
+          "area": 80.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和51年2月26日",
+          "pdfPage": 8
+        },
+        {
+          "name": "放送室棟",
+          "department": "教育課",
+          "area": 7.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成17年2月28日",
+          "pdfPage": 8
+        },
+        {
+          "name": "野球場",
+          "department": "教育課",
+          "area": 0.0,
+          "structure": "-",
+          "built": "平成8年9月30日",
+          "pdfPage": 8
+        }
+      ],
+      "floorArea": 1147.3,
+      "position": {
+        "name": "岩城総合運動場",
+        "coordinates": [
+          133.16137,
+          34.266035
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町岩城5585",
+        "layer": "emergency"
+      }
+    },
+    {
+      "id": "plan-119",
+      "name": "インランド・シー・リゾート フェスパ",
+      "category": "観光・レクリエーション系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "インランド・シー・リゾート フェスパ",
+          "department": "産業振興課",
+          "area": 2729.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成23年3月31日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 2729.0,
+      "position": {
+        "name": "インランド・シー・リゾート　フェスパ",
+        "coordinates": [
+          133.2095275,
+          34.2513269
+        ],
+        "source": "https://www.openstreetmap.org/node/6515950766"
+      }
+    },
+    {
+      "id": "plan-122",
+      "name": "上島町岩城観光センター",
+      "category": "観光・レクリエーション系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "岩城観光センター",
+          "department": "産業振興課",
+          "area": 380.3,
+          "structure": "鉄骨鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成2年11月30日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 380.3,
+      "position": null
+    },
+    {
+      "id": "plan-130",
+      "name": "上島町魚島観光センター",
+      "category": "観光・レクリエーション系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "魚島観光センター",
+          "department": "産業振興課",
+          "area": 519.68,
+          "structure": "鉄骨造",
+          "built": "昭和62年6月30日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 519.68,
+      "position": null
+    },
+    {
+      "id": "plan-149",
+      "name": "上島津波コミュニティアイランド",
+      "category": "観光・レクリエーション系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "ログハウスNO1",
+          "department": "産業振興課",
+          "area": 25.92,
+          "structure": "木造",
+          "built": "昭和62年7月15日",
+          "pdfPage": 9
+        },
+        {
+          "name": "ログハウスNO2",
+          "department": "産業振興課",
+          "area": 14.45,
+          "structure": "木造",
+          "built": "昭和62年7月15日",
+          "pdfPage": 9
+        },
+        {
+          "name": "ログハウスNO3",
+          "department": "産業振興課",
+          "area": 14.45,
+          "structure": "木造",
+          "built": "昭和62年7月15日",
+          "pdfPage": 9
+        },
+        {
+          "name": "ログハウスNO4",
+          "department": "産業振興課",
+          "area": 14.45,
+          "structure": "木造",
+          "built": "昭和62年7月15日",
+          "pdfPage": 9
+        },
+        {
+          "name": "観光会館",
+          "department": "産業振興課",
+          "area": 324.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和62年7月15日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 393.27,
+      "position": null
+    },
+    {
+      "id": "plan-157",
+      "name": "上島町サウンド波間田",
+      "category": "観光・レクリエーション系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "管理棟",
+          "department": "教育課",
+          "area": 77.22,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成6年3月30日",
+          "pdfPage": 9
+        },
+        {
+          "name": "更衣室棟",
+          "department": "教育課",
+          "area": 39.2,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成6年3月30日",
+          "pdfPage": 9
+        },
+        {
+          "name": "トイレ棟",
+          "department": "教育課",
+          "area": 56.44,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成6年3月30日",
+          "pdfPage": 9
+        },
+        {
+          "name": "ポンプ室棟",
+          "department": "教育課",
+          "area": 42.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成6年3月30日",
+          "pdfPage": 9
+        },
+        {
+          "name": "ゲート棟",
+          "department": "教育課",
+          "area": 2.88,
+          "structure": "鉄骨造",
+          "built": "平成6年3月30日",
+          "pdfPage": 9
+        },
+        {
+          "name": "野外ステージ",
+          "department": "教育課",
+          "area": 50.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成6年3月30日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 267.74,
+      "position": null
+    },
+    {
+      "id": "plan-212",
+      "name": "上島町海水温浴施設「潮湯」",
+      "category": "観光・レクリエーション系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "海水温浴施設「潮湯」",
+          "department": "健康推進課",
+          "area": 639.74,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成12年3月6日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 639.74,
+      "position": {
+        "name": "海水温浴施設潮湯",
+        "coordinates": [
+          133.211082,
+          34.2767654
+        ],
+        "source": "https://www.openstreetmap.org/node/5472500513"
+      }
+    },
+    {
+      "id": "plan-127",
+      "name": "上島町岩城農水産物処理加工施設",
+      "category": "産業系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "処理加工施設",
+          "department": "産業振興課",
+          "area": 870.0,
+          "structure": "鉄骨造",
+          "built": "平成8年3月31日",
+          "pdfPage": 9
+        },
+        {
+          "name": "冷凍庫",
+          "department": "産業振興課",
+          "area": 21.0,
+          "structure": "軽量鉄骨造",
+          "built": "平成8年3月31日",
+          "pdfPage": 9
+        },
+        {
+          "name": "倉庫",
+          "department": "産業振興課",
+          "area": 21.0,
+          "structure": "軽量鉄骨造",
+          "built": "平成8年3月31日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 912.0,
+      "position": null
+    },
+    {
+      "id": "plan-131",
+      "name": "上島町魚島中間育成水産施設",
+      "category": "産業系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "稚魚育成センター",
+          "department": "産業振興課",
+          "area": 397.89,
+          "structure": "鉄骨造",
+          "built": "平成4年3月31日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 397.89,
+      "position": null
+    },
+    {
+      "id": "plan-140",
+      "name": "上島町体験研修施設「知新館」",
+      "category": "産業系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "体験研修施設「知新館」",
+          "department": "産業振興課",
+          "area": 400.62,
+          "structure": "木造",
+          "built": "平成23年3月10日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 400.62,
+      "position": {
+        "name": "知新館",
+        "coordinates": [
+          133.149602,
+          34.248765
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町岩城875",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-142",
+      "name": "上島町生名農産物集荷場",
+      "category": "産業系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "集荷場倉庫",
+          "department": "産業振興課",
+          "area": 368.0,
+          "structure": "鉄骨造",
+          "built": "平成22年2月18日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 368.0,
+      "position": null
+    },
+    {
+      "id": "plan-71",
+      "name": "岩城保育所",
+      "category": "子育て支援施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "岩城保育所",
+          "department": "住民課",
+          "area": 997.0,
+          "structure": "木造",
+          "built": "平成27年2月26日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 997.0,
+      "position": {
+        "name": "岩城保育所",
+        "coordinates": [
+          133.139832,
+          34.244719
+        ],
+        "source": "https://www.openstreetmap.org/node/1423734700"
+      }
+    },
+    {
+      "id": "plan-79",
+      "name": "魚島保育所",
+      "category": "子育て支援施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "魚島保育所",
+          "department": "住民課",
+          "area": 212.4,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和57年3月20日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 212.4,
+      "position": null
+    },
+    {
+      "id": "plan-94",
+      "name": "生名保育所",
+      "category": "子育て支援施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "生名保育所",
+          "department": "住民課",
+          "area": 416.0,
+          "structure": "木造",
+          "built": "平成6年3月31日",
+          "pdfPage": 9
+        },
+        {
+          "name": "倉庫",
+          "department": "住民課",
+          "area": 39.0,
+          "structure": "木造",
+          "built": "平成6年3月31日",
+          "pdfPage": 9
+        },
+        {
+          "name": "倉庫",
+          "department": "住民課",
+          "area": 40.0,
+          "structure": "鉄骨造",
+          "built": "平成6年3月31日",
+          "pdfPage": 9
+        },
+        {
+          "name": "渡廊下",
+          "department": "住民課",
+          "area": 10.0,
+          "structure": "木造",
+          "built": "平成12年3月31日",
+          "pdfPage": 9
+        },
+        {
+          "name": "給食室",
+          "department": "住民課",
+          "area": 48.0,
+          "structure": "木造",
+          "built": "平成6年3月31日",
+          "pdfPage": 9
+        },
+        {
+          "name": "渡廊下",
+          "department": "住民課",
+          "area": 7.0,
+          "structure": "木造",
+          "built": "平成6年3月31日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 560.0,
+      "position": {
+        "name": "生名保育所",
+        "coordinates": [
+          133.179152,
+          34.273087
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町生名1620",
+        "layer": "emergency"
+      }
+    },
+    {
+      "id": "plan-113",
+      "name": "弓削保育所",
+      "category": "子育て支援施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "弓削保育所",
+          "department": "住民課",
+          "area": 819.04,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和63年2月1日",
+          "pdfPage": 9
+        },
+        {
+          "name": "園芸倉庫",
+          "department": "住民課",
+          "area": 19.8,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成元年5月1日",
+          "pdfPage": 9
+        }
+      ],
+      "floorArea": 838.84,
+      "position": {
+        "name": "上島町立弓削保育所",
+        "coordinates": [
+          133.1889963,
+          34.2518676
+        ],
+        "source": "https://www.town.kamijima.lg.jp/site/publicfacilities/972.html",
+        "address": "愛媛県越智郡上島町弓削佐島583番地 お問合せ先 上島町立弓削保育所",
+        "guideDate": "2015年4月16日"
+      }
+    },
+    {
+      "id": "plan-206",
+      "name": "上島町岩城保健センター（地域包括支援センター岩城分室）",
+      "category": "保健・福祉施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "岩城保健センター",
+          "department": "健康推進課",
+          "area": 789.08,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成11年10月31日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 789.08,
+      "position": {
+        "name": "岩城保健センター",
+        "coordinates": [
+          133.142097,
+          34.247683
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町岩城2239",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-208",
+      "name": "上島町弓削保健センター（地域包括支援センター弓削分室）",
+      "category": "保健・福祉施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "弓削保健センター",
+          "department": "健康推進課",
+          "area": 751.5,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成9年3月19日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 751.5,
+      "position": {
+        "name": "弓削保健センター",
+        "coordinates": [
+          133.210662,
+          34.278892
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町弓削上弓削1907-1",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-210",
+      "name": "上島町魚島保健センター（魚島デイサービスセンター）",
+      "category": "保健・福祉施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "魚島保健センター（魚島デイサービスセンター）",
+          "department": "健康推進課",
+          "area": 759.32,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成11年3月30日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 759.32,
+      "position": null
+    },
+    {
+      "id": "plan-214",
+      "name": "上島町生名保健センター（地域包括支援センター）",
+      "category": "保健・福祉施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "生名保健センター",
+          "department": "健康推進課",
+          "area": 412.5,
+          "structure": "鉄骨造",
+          "built": "平成9年3月25日",
+          "pdfPage": 10
+        },
+        {
+          "name": "車庫",
+          "department": "健康推進課",
+          "area": 44.0,
+          "structure": "鉄骨造",
+          "built": "平成9年3月25日",
+          "pdfPage": 10
+        },
+        {
+          "name": "共用プロパン庫",
+          "department": "健康推進課",
+          "area": 8.41,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "平成9年3月25日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 464.91,
+      "position": {
+        "name": "生名保健センター",
+        "coordinates": [
+          133.176474,
+          34.27986
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町生名2133-4",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-203",
+      "name": "上島町岩城高齢者生活福祉センター",
+      "category": "保健・福祉施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "岩城高齢者生活福祉センター",
+          "department": "健康推進課",
+          "area": 1563.1,
+          "structure": "鉄骨造",
+          "built": "平成9年3月20日",
+          "pdfPage": 10
+        },
+        {
+          "name": "倉庫",
+          "department": "健康推進課",
+          "area": 9.63,
+          "structure": "ｺﾝｸﾘｰﾄﾌﾞﾛｯｸ",
+          "built": "平成9年3月20日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 1572.73,
+      "position": {
+        "name": "岩城高齢者生活福祉センター",
+        "coordinates": [
+          133.141695,
+          34.247869
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町岩城2239",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-207",
+      "name": "上島町弓削高齢者生活福祉センター",
+      "category": "保健・福祉施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "弓削高齢者生活福祉センター",
+          "department": "健康推進課",
+          "area": 1132.15,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成10年3月2日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 1132.15,
+      "position": {
+        "name": "弓削高齢者生活福祉センター（高浜荘）",
+        "coordinates": [
+          133.210636,
+          34.278763
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町弓削上弓削1907-1",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-211",
+      "name": "上島町岩城高齢者交流会館「友愛会館」",
+      "category": "保健・福祉施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "岩城高齢者交流会館「友愛会館」",
+          "department": "健康推進課",
+          "area": 197.65,
+          "structure": "木造",
+          "built": "平成17年2月20日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 197.65,
+      "position": null
+    },
+    {
+      "id": "plan-213",
+      "name": "上島町生名デイサービスセンター",
+      "category": "保健・福祉施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "生名デイサービスセンター",
+          "department": "健康推進課",
+          "area": 859.0,
+          "structure": "鉄骨造",
+          "built": "平成10年3月18日",
+          "pdfPage": 10
+        },
+        {
+          "name": "車庫",
+          "department": "健康推進課",
+          "area": 64.0,
+          "structure": "鉄骨造",
+          "built": "平成10年3月18日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 923.0,
+      "position": null
+    },
+    {
+      "id": "plan-217",
+      "name": "上島町特別養護老人ホーム海光園",
+      "category": "保健・福祉施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "海光園",
+          "department": "海光園",
+          "area": 3867.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成23年4月1日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 3867.0,
+      "position": {
+        "name": "特別養護老人ホーム海光園",
+        "coordinates": [
+          133.183133,
+          34.270461
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町生名1268-1",
+        "layer": "shelter"
+      }
+    },
+    {
+      "id": "plan-75",
+      "name": "魚島国民健康保険診療所",
+      "category": "医療施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "魚島国民健康保険診療所",
+          "department": "住民課",
+          "area": 308.38,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成30年3月20日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 308.38,
+      "position": null
+    },
+    {
+      "id": "plan-204",
+      "name": "岩城診療所",
+      "category": "医療施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "診察棟",
+          "department": "健康推進課",
+          "area": 190.81,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和56年3月30日",
+          "pdfPage": 10
+        },
+        {
+          "name": "歯科診療棟",
+          "department": "健康推進課",
+          "area": 206.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和55年3月30日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 396.81,
+      "position": {
+        "name": "岩城診療所",
+        "coordinates": [
+          133.1439802142857,
+          34.245106528571434
+        ],
+        "source": "https://www.openstreetmap.org/way/906673826"
+      }
+    },
+    {
+      "id": "plan-1",
+      "name": "弓削総合支所",
+      "category": "行政系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "弓削総合支所",
+          "department": "総務課",
+          "area": 2135.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和51年11月1日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 2135.0,
+      "position": {
+        "name": "弓削総合支所（本庁）",
+        "coordinates": [
+          133.204492,
+          34.257466
+        ],
+        "source": "https://www.town.kamijima.lg.jp/site/publicfacilities/777.html",
+        "address": "愛媛県越智郡上島町弓削下弓削210",
+        "guideDate": "2020年4月1日"
+      }
+    },
+    {
+      "id": "plan-2",
+      "name": "生名総合支所",
+      "category": "行政系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "生名総合支所",
+          "department": "総務課",
+          "area": 1560.47,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和59年7月31日",
+          "pdfPage": 10
+        },
+        {
+          "name": "車庫",
+          "department": "総務課",
+          "area": 78.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和59年7月31日",
+          "pdfPage": 10
+        },
+        {
+          "name": "倉庫",
+          "department": "総務課",
+          "area": 45.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和59年7月31日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 1683.47,
+      "position": {
+        "name": "生名総合支所",
+        "coordinates": [
+          133.1849743,
+          34.2684546
+        ],
+        "source": "https://www.town.kamijima.lg.jp/site/publicfacilities/5368.html",
+        "address": "愛媛県越智郡上島町生名621番地1",
+        "guideDate": "2022年4月1日"
+      }
+    },
+    {
+      "id": "plan-3",
+      "name": "岩城総合支所",
+      "category": "行政系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "岩城総合支所",
+          "department": "総務課",
+          "area": 1312.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成23年4月1日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 1312.0,
+      "position": {
+        "name": "岩城総合支所",
+        "coordinates": [
+          133.14743357643724,
+          34.24535647585105
+        ],
+        "source": "https://www.town.kamijima.lg.jp/site/publicfacilities/5369.html",
+        "address": "愛媛県越智郡上島町岩城1427-2",
+        "guideDate": "2022年4月1日"
+      }
+    },
+    {
+      "id": "plan-44",
+      "name": "上島町消防本部",
+      "category": "行政系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "消防本部(訓練塔含む)",
+          "department": "消防署",
+          "area": 823.4,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成19年3月20日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 823.4,
+      "position": {
+        "name": "上島町消防本部",
+        "coordinates": [
+          133.2013932,
+          34.2590124
+        ],
+        "source": "https://www.openstreetmap.org/node/1423706935"
+      }
+    },
+    {
+      "id": "plan-260",
+      "name": "魚島総合支所",
+      "category": "行政系施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "魚島総合支所",
+          "department": "総務課",
+          "area": 1881.01,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成28年10月5日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 1881.01,
+      "position": {
+        "name": "魚島総合支所",
+        "coordinates": [
+          133.3204961,
+          34.177497699999996
+        ],
+        "source": "https://www.town.kamijima.lg.jp/site/publicfacilities/5370.html",
+        "address": "愛媛県越智郡上島町魚島1番耕地1362番地1 開発センター1F",
+        "guideDate": "2015年4月21日"
+      }
+    },
+    {
+      "id": "plan-141",
+      "name": "上島町定住促進住宅",
+      "category": "定住促進住宅",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "定住促進住宅",
+          "department": "産業振興課",
+          "area": 306.0,
+          "structure": "木造",
+          "built": "平成23年3月10日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 306.0,
+      "position": null
+    },
+    {
+      "id": "plan-178",
+      "name": "魚島第3住宅",
+      "category": "定住促進住宅",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "魚島第3住宅",
+          "department": "建設課",
+          "area": 944.65,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成16年8月9日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 944.65,
+      "position": null
+    },
+    {
+      "id": "plan-182",
+      "name": "高井神第2住宅",
+      "category": "定住促進住宅",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "高井神第2住宅",
+          "department": "建設課",
+          "area": 263.46,
+          "structure": "木造",
+          "built": "平成9年3月24日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 263.46,
+      "position": null
+    },
+    {
+      "id": "plan-183",
+      "name": "高井神第3住宅",
+      "category": "定住促進住宅",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "高井神第3住宅",
+          "department": "建設課",
+          "area": 238.48,
+          "structure": "木造",
+          "built": "平成10年3月20日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 238.48,
+      "position": null
+    },
+    {
+      "id": "plan-198",
+      "name": "魚島第2住宅（4F後継者住宅）",
+      "category": "定住促進住宅",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "魚島第2住宅 4F（後継者住宅）",
+          "department": "建設課",
+          "area": 220.74,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成6年4月1日",
+          "pdfPage": 10
+        }
+      ],
+      "floorArea": 220.74,
+      "position": null
+    },
+    {
+      "id": "plan-161",
+      "name": "岩城浄化センター",
+      "category": "供給処理施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "管理棟",
+          "department": "公営事業課",
+          "area": 262.54,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成17年3月17日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 262.54,
+      "position": null
+    },
+    {
+      "id": "plan-162",
+      "name": "弓削浄化センター",
+      "category": "供給処理施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "管理棟",
+          "department": "公営事業課",
+          "area": 393.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成10年3月31日",
+          "pdfPage": 11
+        },
+        {
+          "name": "汚泥処理棟",
+          "department": "公営事業課",
+          "area": 189.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成16年8月20日",
+          "pdfPage": 11
+        },
+        {
+          "name": "水処理ポンプ棟",
+          "department": "公営事業課",
+          "area": 157.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成10年3月31日",
+          "pdfPage": 11
+        },
+        {
+          "name": "ＭＩＣＳ受入棟",
+          "department": "公営事業課",
+          "area": 48.0,
+          "structure": "鉄骨造",
+          "built": "平成10年3月31日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 787.0,
+      "position": {
+        "name": "弓削浄化センター",
+        "coordinates": [
+          133.200802,
+          34.261604
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町弓削明神333",
+        "layer": "emergency"
+      }
+    },
+    {
+      "id": "plan-167",
+      "name": "佐島浄化センター",
+      "category": "供給処理施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "佐島浄化センター",
+          "department": "公営事業課",
+          "area": 240.53,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成13年2月28日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 240.53,
+      "position": {
+        "name": "佐島浄化センター",
+        "coordinates": [
+          133.191912,
+          34.246907
+        ],
+        "source": "https://www.gsi.go.jp/bousaichiri/hinanbasho.html",
+        "address": "愛媛県上島町弓削佐島2518",
+        "layer": "emergency"
+      }
+    },
+    {
+      "id": "plan-169",
+      "name": "生名浄化センター",
+      "category": "供給処理施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "管理棟",
+          "department": "公営事業課",
+          "area": 187.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成14年6月1日",
+          "pdfPage": 11
+        },
+        {
+          "name": "汚泥処理室",
+          "department": "公営事業課",
+          "area": 89.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成14年6月1日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 276.0,
+      "position": null
+    },
+    {
+      "id": "plan-69",
+      "name": "岩城クリーンセンター",
+      "category": "供給処理施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "焼却場",
+          "department": "住民課",
+          "area": 639.47,
+          "structure": "鉄骨造",
+          "built": "平成6年12月12日",
+          "pdfPage": 11
+        },
+        {
+          "name": "車庫",
+          "department": "住民課",
+          "area": 77.7,
+          "structure": "鉄骨造",
+          "built": "平成6年12月12日",
+          "pdfPage": 11
+        },
+        {
+          "name": "資源化建物",
+          "department": "住民課",
+          "area": 120.0,
+          "structure": "鉄骨造",
+          "built": "平成16年12月12日",
+          "pdfPage": 11
+        },
+        {
+          "name": "資源ゴミ置場",
+          "department": "住民課",
+          "area": 31.0,
+          "structure": "木造",
+          "built": "平成16年3月31日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 868.17,
+      "position": null
+    },
+    {
+      "id": "plan-92",
+      "name": "上島クリーンセンター",
+      "category": "供給処理施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "焼却場",
+          "department": "住民課",
+          "area": 515.0,
+          "structure": "鉄骨鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成20年3月26日",
+          "pdfPage": 11
+        },
+        {
+          "name": "ストックヤード棟",
+          "department": "住民課",
+          "area": 80.0,
+          "structure": "鉄骨造",
+          "built": "平成20年3月26日",
+          "pdfPage": 11
+        },
+        {
+          "name": "管理棟",
+          "department": "住民課",
+          "area": 174.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成20年3月26日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 769.0,
+      "position": null
+    },
+    {
+      "id": "plan-61",
+      "name": "やすらぎ苑",
+      "category": "その他建物系公共施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "火葬場",
+          "department": "住民課",
+          "area": 216.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成15年12月15日",
+          "pdfPage": 11
+        },
+        {
+          "name": "車庫・倉庫",
+          "department": "住民課",
+          "area": 36.0,
+          "structure": "鉄骨造",
+          "built": "平成15年12月15日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 252.0,
+      "position": null
+    },
+    {
+      "id": "plan-70",
+      "name": "天翔苑",
+      "category": "その他建物系公共施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "火葬場",
+          "department": "住民課",
+          "area": 180.45,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成11年3月15日",
+          "pdfPage": 11
+        },
+        {
+          "name": "車庫",
+          "department": "住民課",
+          "area": 84.54,
+          "structure": "鉄骨ｺﾝｸﾘｰﾄ",
+          "built": "平成13年4月1日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 264.99,
+      "position": null
+    },
+    {
+      "id": "plan-73",
+      "name": "弓削斎場",
+      "category": "その他建物系公共施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "火葬場",
+          "department": "住民課",
+          "area": 324.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成5年11月22日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 324.0,
+      "position": null
+    },
+    {
+      "id": "plan-174",
+      "name": "弓削港務所",
+      "category": "その他建物系公共施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "弓削港務所",
+          "department": "建設課",
+          "area": 199.0,
+          "structure": "軽量鉄骨造",
+          "built": "平成22年9月1日",
+          "pdfPage": 11
+        },
+        {
+          "name": "広場テント",
+          "department": "建設課",
+          "area": 146.0,
+          "structure": "軽量鉄骨造",
+          "built": "平成22年9月1日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 345.0,
+      "position": null
+    },
+    {
+      "id": "plan-187",
+      "name": "生名港待合所",
+      "category": "その他建物系公共施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "生名港待合所",
+          "department": "建設課",
+          "area": 184.0,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "昭和57年3月30日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 184.0,
+      "position": null
+    },
+    {
+      "id": "plan-192",
+      "name": "立石港務所",
+      "category": "その他建物系公共施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "立石港務所",
+          "department": "建設課",
+          "area": 817.0,
+          "structure": "軽量鉄骨造",
+          "built": "平成23年1月31日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 817.0,
+      "position": null
+    },
+    {
+      "id": "plan-159",
+      "name": "上島町 CATV（本局）",
+      "category": "その他建物系公共施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "上島町CATV（本局）",
+          "department": "企画情報課",
+          "area": 393.66,
+          "structure": "鉄骨造",
+          "built": "平成7年3月25日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 393.66,
+      "position": {
+        "name": "上島町CATV（本局）",
+        "coordinates": [
+          133.201033,
+          34.261025
+        ],
+        "source": "https://www.town.kamijima.lg.jp/site/publicfacilities/962.html",
+        "address": "",
+        "guideDate": "2020年4月24日"
+      }
+    },
+    {
+      "id": "plan-160",
+      "name": "バス車庫",
+      "category": "その他建物系公共施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "バス車庫",
+          "department": "公営事業課",
+          "area": 264.7,
+          "structure": "鉄骨造",
+          "built": "昭和53年1月31日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 264.7,
+      "position": null
+    },
+    {
+      "id": "plan-177",
+      "name": "魚島第2住宅（1F）（駐在所）",
+      "category": "その他建物系公共施設",
+      "planDate": "2021-03",
+      "buildings": [
+        {
+          "name": "魚島駐在所",
+          "department": "建設課",
+          "area": 251.6,
+          "structure": "鉄筋ｺﾝｸﾘｰﾄ",
+          "built": "平成6年4月1日",
+          "pdfPage": 11
+        }
+      ],
+      "floorArea": 251.6,
+      "position": null
+    }
+  ],
+  "mapped": 43
+}

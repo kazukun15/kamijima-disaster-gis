@@ -1,5 +1,5 @@
 /* Bump this version whenever published datasets or the app shell change. */
-const VERSION='kamijima-3d-20260929-v1';
+const VERSION='kamijima-3d-20260929-facilities-v2';
 const SHELL=VERSION+'-shell',DATA=VERSION+'-data';
 const ROOT=new URL(self.registration.scope);
 const inside=url=>url.origin===ROOT.origin&&url.pathname.startsWith(ROOT.pathname);

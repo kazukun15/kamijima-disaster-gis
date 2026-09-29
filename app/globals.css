@@ -69,3 +69,12 @@
 .walking-presets{display:flex;gap:4px;flex-wrap:wrap;margin:10px 0}.walking-presets button{font-size:12px;min-height:44px;min-width:42px;padding:6px}.walking-presets button[aria-pressed=true]{background:#a94520;color:white}.walking-mode{display:block;font-size:12px;margin:8px 0 12px}.walking-mode select{width:100%;min-height:44px;font-size:12px;margin-top:5px}.walking-controls button{min-height:44px}
 .offline-status{position:fixed;bottom:0;left:0;right:0;z-index:80;padding:8px 16px;background:#fff1c9;color:#503b12;text-align:center;font-size:12px;box-shadow:0 -2px 10px #0001}
 @media print{.offline-status{display:none}}
+
+.facility-landmark{max-width:224px;min-height:32px;border:1px solid #c4d4ce;border-radius:7px;padding:6px 10px;background:#fffffff2;color:#174c50;font-size:12px;font-weight:700;box-shadow:0 2px 8px #163f4730;white-space:nowrap;overflow:visible;cursor:pointer;z-index:3}
+.facility-landmark::after{content:"";position:absolute;top:100%;left:50%;width:2px;height:30px;background:#2a646c;pointer-events:none}
+.facility-landmark.maplibregl-marker-covered{pointer-events:none}
+.facility-info{border:1px solid #c9dcd4;background:#f5faf7;border-radius:12px;padding:14px;margin-bottom:18px}
+.facility-info h3{margin:6px 0 10px;font-size:17px}.facility-info dl{display:grid;grid-template-columns:6.5em 1fr;gap:7px;font-size:12px}.facility-info dd{margin:0}.facility-info dt{color:#5b7071}.facility-info small,.facility-date{font-size:12px;line-height:1.7;color:#526b6a}.facility-info summary{cursor:pointer;padding:12px 0;font-weight:bold}.facility-info article{padding:8px 0;border-top:1px solid #d9e6df;font-size:12px}.facility-info article p{margin:5px 0}.facility-info a{font-size:12px}
+@media(max-width:768px){.facility-landmark{max-width:190px;min-height:44px;font-size:12px}}
+
+.facility-landmark span{display:block;overflow:hidden;text-overflow:ellipsis;max-width:100%}
