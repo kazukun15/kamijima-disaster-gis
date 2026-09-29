@@ -50,3 +50,22 @@
 .walking-panel small{display:block;font-size:10px;line-height:1.6;color:#5f5a50;margin-top:11px}
 .walking-panel a{white-space:nowrap}
 @media(max-width:900px){.mobile-tabs{z-index:20}}
+
+.twin-panel{position:absolute;z-index:18;right:55px;top:66px;width:340px;max-height:calc(100% - 88px);display:flex;flex-direction:column;background:#fbfdfcf5;border:1px solid #b7cfc7;border-radius:14px;box-shadow:0 16px 48px #163f4738;backdrop-filter:blur(14px);overflow:hidden}
+.twin-panel>header{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line);gap:10px}
+.twin-panel h2{font-size:19px}.twin-panel button,.twin-panel select{min-height:44px;font-size:12px}.twin-panel>header button{padding:5px 9px;white-space:nowrap}
+.twin-scroll{min-height:0;overflow:auto;padding:16px 18px}.twin-intro{font-size:12px;line-height:1.7;color:var(--muted);margin-bottom:16px}
+.twin-panel fieldset{border:0;border-bottom:1px solid var(--line);padding:0 0 16px;margin:0 0 16px}.twin-panel legend{font-size:13px;font-weight:700;margin-bottom:9px}
+.twin-panel label{display:flex;gap:9px;align-items:center;min-height:44px;font-size:12px}.twin-panel input[type=checkbox]{width:18px;height:18px;accent-color:#176c69}
+.twin-segments{display:flex;gap:6px}.twin-segments button{flex:1;padding:6px}.twin-segments button[aria-pressed=true]{background:#176c69;color:#fff;border-color:#176c69}
+.twin-panel small{display:block;font-size:11px;color:#5b6865;line-height:1.7;margin-top:7px}.twin-panel select{width:100%}.twin-panel summary{font-size:12px;font-weight:700;cursor:pointer;min-height:44px;line-height:44px}.twin-panel details{border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:8px}
+.twin-warning{font-size:11px;padding:10px;background:#fff1d8;border-radius:6px;margin:8px 0;line-height:1.7}.twin-data{width:100%;margin-top:10px}
+.island-quality button{display:grid;grid-template-columns:1fr 1fr;gap:3px;width:100%;margin-bottom:7px;text-align:left;padding:8px}.island-quality span{font-size:11px}.island-quality small{grid-column:2;margin:0}.island-quality p{font-size:11px;line-height:1.7;margin:8px 0}
+.coverage-legend{display:grid;grid-template-columns:1fr 1fr;font-size:11px;gap:7px}.coverage-legend i{display:inline-block;width:10px;height:10px;margin-right:5px}.terrain-debug{position:absolute;z-index:6;left:10px;bottom:45px;max-width:calc(100% - 25px);background:#102a2edb;color:#e0f3ec;padding:8px 10px;border-radius:6px;font:11px/1.6 monospace;pointer-events:none}
+.elevation-source{display:grid;grid-template-columns:90px 1fr;gap:6px;margin-top:12px;padding:10px;background:#eef4f1;border-radius:6px;font-size:11px}.elevation-source dt{color:#577069}.elevation-source dd{margin:0;overflow-wrap:anywhere}.building-info{margin-top:12px;padding:10px;background:#f5eddf;border-radius:6px;font-size:12px}.building-info p{margin:5px 0}
+.raster-fallback{position:absolute;inset:0;overflow:hidden;touch-action:none;background:#dce8ef}.raster-fallback>img{position:absolute;pointer-events:none}.raster-fallback>svg{position:absolute;inset:0;pointer-events:none}.fallback-controls{position:absolute;right:10px;top:10px;display:grid}.fallback-controls button{width:44px;height:44px}.fallback-note{position:absolute;bottom:0;left:0;right:0;padding:5px 10px;font-size:10px;background:#fffffff2}.fallback-note a{margin-left:6px}
+@media(max-width:600px){.twin-panel{top:105px;bottom:78px;right:8px;left:8px;width:auto;max-height:none}.twin-scroll{padding:12px 15px}.twin-panel>header{padding:10px 15px}.map-top-actions button{min-height:44px}.elevation-source{font-size:12px}.terrain-debug{bottom:90px;font-size:10px}.footer>span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.twin-panel label{font-size:13px}}
+@media print{.twin-panel,.terrain-debug,.fallback-controls{display:none}.elevation-source{break-inside:avoid}}
+.walking-presets{display:flex;gap:4px;flex-wrap:wrap;margin:10px 0}.walking-presets button{font-size:12px;min-height:44px;min-width:42px;padding:6px}.walking-presets button[aria-pressed=true]{background:#a94520;color:white}.walking-mode{display:block;font-size:12px;margin:8px 0 12px}.walking-mode select{width:100%;min-height:44px;font-size:12px;margin-top:5px}.walking-controls button{min-height:44px}
+.offline-status{position:fixed;bottom:0;left:0;right:0;z-index:80;padding:8px 16px;background:#fff1c9;color:#503b12;text-align:center;font-size:12px;box-shadow:0 -2px 10px #0001}
+@media print{.offline-status{display:none}}

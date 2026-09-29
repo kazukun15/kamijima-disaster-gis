@@ -1,0 +1,12 @@
+{
+  "source": "OpenStreetMap contributors / Geofabrik Shikoku 2026-09-27",
+  "url": "https://download.geofabrik.de/asia/japan/shikoku-260927.osm.pbf",
+  "license": "ODbL 1.0",
+  "processedDate": "2026-09-29",
+  "buildings": 4306,
+  "estimatedBuildings": 4306,
+  "taggedHeights": 0,
+  "forestAreas": 123,
+  "invalidSkipped": 3,
+  "limitations": "Footprint coverage is incomplete. Height tags are not verified measurements; levels x3m or defaults 3/6m are estimates. Forest canopy 8m is illustrative, not measured."
+}

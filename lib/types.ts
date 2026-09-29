@@ -9,6 +9,7 @@ export interface Metadata {
   originalFormat:string; originalCrs:string; processedFormat:string; notes:string;
 }
 export interface Layer extends Metadata {
+  time?:{start:string;end?:string;label:string};
   category:Category; hazardKind?:string; status:'READY'|'DISPLAY_ONLY'|'DATA_SOURCE_PENDING';
   kind:'polygon'|'raster'|'point'|'pending'|'pmtiles'; url?:string; color:string;
   legend: {label:string;color:string}[]; legendUrl?:string; minzoom?:number;

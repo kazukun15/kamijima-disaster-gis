@@ -10,7 +10,7 @@
 - 原典形式: OSM PBF、座標 WGS84
 - 加工: 上島町と周辺約5kmの歩行可能な道路・歩道等を抽出し、接続グラフ `public/data/walking-network.json` に変換。再生成手順は `scripts/build-walking-network.py`。
 - ライセンス: © OpenStreetMap contributors、Open Database License (ODbL) 1.0。利用・再配布時の表示: https://www.openstreetmap.org/copyright 。派生データベースの提供にはODbLの条件が適用されます。
-- 注意: 徒歩速度4km/h、指定1～60分の概算。通行止め、未収録の道、坂道・階段、渡船、歩行制限の最新情報を反映しません。道路上の到達可能区間を線で描画し、面状の安全区域や避難可否を示しません。
+- 注意: 徒歩速度4km/h、指定1～60分の概算。勾配補正は任意です。通行止め、未収録の道、階段の負荷、渡船、歩行制限の最新情報を反映しません。道路上の到達可能区間を線で描画し、面状の安全区域や避難可否を示しません。
 
 ## 津波浸水想定 (tsunami)
 
@@ -206,3 +206,27 @@
 - ライセンス: 国土地理院コンテンツ利用規約・指定緊急避難場所等の利用上の注意
 - 状況: READY
 - 注意: 各市町村の登録情報。随時更新され、未掲載・更新遅延があります。最新の指定・開設状況は町に確認してください。
+
+## KAMIJIMA HYBRID TERRAIN（2026-09-29追加）
+
+- 原典：国土地理院の[標高タイル仕様](https://maps.gsi.go.jp/development/demtile.html)、[配信一覧](https://maps.gsi.go.jp/development/ichiran.html)、[標高の説明](https://maps.gsi.go.jp/development/hyokochi.html)。
+- 取得・確認：2026-09-29。各セルの測量日は配信タイルから特定できません。2026年3月の標高改定情報は[地理院地図のお知らせ](https://maps.gsi.go.jp/help/)を参照。
+- 優先順・元解像度：DEM1A 1m（dem1a_png、z17）、DEM5A 5m（dem5a_png、z15）、DEM5B/C 5m（dem5b_png/dem5c_png、z15）、DEM10B 10m（dem_png、z14）。欠測は次の原典の有効値で補完。
+- 配信形式：XYZ・GSI標高PNG、WGS84座標からWeb Mercatorタイル参照。元値はcm符号付き24bit。Officialは有効元値を維持し、Visualは境界・海岸調整、限定的な小穴補間、0.1m量子化、LOD生成を行っています。
+- 海岸代理境界：既存の国土数値情報N03、2026-01-01基準の行政区域。測量海岸線ではありません。
+- 出典表記：地形：国土地理院 DEM1A/5/10（表示用加工）。利用条件は[国土地理院コンテンツ利用規約](https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html)を参照。加工物は原典そのものと誤認されないよう表記しています。
+- 配信原本・HTTP結果・SHA256：非公開作業フォルダ `data/raw/terrain/fetch-audit.json`。公開メタデータとセル別ソースコードから由来を追跡できます。
+- [島別Coverage](docs/DEM_COVERAGE.md)、[処理仕様](TERRAIN_ARCHITECTURE.md)。AI・等高線・AW3D30等は未使用。
+
+## OSM建物・森林（2026-09-29追加）
+
+- 原典：© OpenStreetMap contributors / [Geofabrik四国2026-09-27版](https://download.geofabrik.de/asia/japan/shikoku-260927.osm.pbf)。取得・加工：2026-09-29。
+- [ODbL 1.0・帰属表示](https://www.openstreetmap.org/copyright)。公開PMTilesは派生データベースとして同条件を適用します。データの権利をアプリのコードと混同しないでください。
+- 建物4,306棟、全てEstimated。階数×3m、用途別3/6m。直接heightタグを持つ建物は今回0棟。heightタグがある別データを将来扱う場合も測量済みとはみなしません。
+- 森林123区域、表示用8m。個別樹木の測量成果ではありません。不正形状3件を除外。
+- 出力：`buildings.pmtiles`、`vegetation.pmtiles`、`buildings-metadata.json`。再生成：`scripts/build-buildings.py`。LODは簡略化と表示距離で調整。
+- 上島町の利用可能なPLATEAU建物モデルは確認できていないため採用していません。
+
+## 徒歩の勾配補正（2026-09-29追加）
+
+既存OSMグラフにOfficial Terrainの節点標高とソースコードを追加しました。任意のTobler補正は[1993年の原著](https://escholarship.org/uc/item/05r820mz)を参考に平地4km/hへ正規化しています。原著の係数をそのまま実速度として使っているわけではありません。橋・トンネル・階段・欠測等の代替条件と数式はTERRAIN_ARCHITECTURE.mdを参照。Visual Terrainは分析に使いません。

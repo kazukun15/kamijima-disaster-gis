@@ -120,7 +120,7 @@ test('DEM terrain with aerial imagery can return to 2D',async({page})=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/#lat=34.260&lng=133.206&zoom=14&basemap=photo&layers=boundary,landslide-warning,landslide-special&terrain=0');
  await expect(page.getByTestId('map-status')).toContainText('地図操作が可能');
- const dem=page.waitForResponse(r=>r.url().includes('/dem_png/')&&r.status()===200);
+ const dem=page.waitForResponse(r=>(r.url().includes('/data/terrain/visual/')||r.url().includes('/dem_png/'))&&r.status()===200);
  await page.getByRole('button',{name:'3D地形',exact:true}).click();await dem;
  await expect(page.getByRole('button',{name:'2Dに戻す',exact:true})).toHaveAttribute('aria-pressed','true');
  await openLayers(page);
@@ -137,6 +137,7 @@ test('DEM terrain with aerial imagery can return to 2D',async({page})=>{
 });
 test('DEM network failure returns to 2D with an explanation',async({page})=>{
  await page.route('**/dem_png/**',route=>route.abort());
+ await page.route('**/data/terrain/visual/**',route=>route.abort());
  await page.goto('/#lat=34.26&lng=133.206&zoom=14&terrain=0');await expect(page.getByTestId('map-status')).toContainText('地図操作が可能');
  await page.getByRole('button',{name:'3D地形',exact:true}).click();await expect(page.getByText('地形データを取得できないため2D表示に戻しました。')).toBeVisible();await expect(page.getByTestId('map-status')).toContainText('2D');
 });

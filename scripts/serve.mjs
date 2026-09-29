@@ -3,7 +3,7 @@ import {createReadStream} from 'node:fs';
 import {stat} from 'node:fs/promises';
 import path from 'node:path';
 const root=path.resolve('out'),port=Number(process.env.PORT??4173),host=process.env.HOST??'127.0.0.1';
-const types={'.html':'text/html; charset=utf-8','.js':'application/javascript','.css':'text/css','.json':'application/json','.geojson':'application/geo+json','.png':'image/png','.svg':'image/svg+xml','.pmtiles':'application/vnd.pmtiles'};
+const types={'.html':'text/html; charset=utf-8','.js':'application/javascript','.css':'text/css','.json':'application/json','.webmanifest':'application/manifest+json','.geojson':'application/geo+json','.png':'image/png','.svg':'image/svg+xml','.pmtiles':'application/vnd.pmtiles'};
 http.createServer(async(req,res)=>{
  try{
   if(!['GET','HEAD'].includes(req.method)){res.writeHead(405);res.end();return;}

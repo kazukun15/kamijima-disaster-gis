@@ -8,10 +8,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
+from functools import lru_cache
 from datetime import date
 from pathlib import Path
 
 import osmium
+from PIL import Image
 
 SOURCE = Path("data/raw/shikoku-260927.osm.pbf")
 TARGET = Path("public/data/walking-network.json")
@@ -34,6 +37,7 @@ class PedestrianHandler(osmium.SimpleHandler):
         super().__init__()
         self.nodes: dict[int, tuple[float, float]] = {}
         self.edges: list[tuple[int, int, int]] = []
+        self.edge_terrain: list[bool] = []
         self.blocked: set[int] = set()
         self.way_count = 0
 
@@ -88,6 +92,7 @@ class PedestrianHandler(osmium.SimpleHandler):
             self.nodes[a[0]] = (a[1], a[2])
             self.nodes[b[0]] = (b[1], b[2])
             self.edges.append((a[0], b[0], direction))
+            self.edge_terrain.append(tags.get('bridge') in (None,'no') and tags.get('tunnel') in (None,'no') and kind!='steps')
             included = True
         self.way_count += int(included)
 
@@ -99,6 +104,18 @@ def main() -> None:
     handler.apply_file(str(SOURCE), locations=True, idx="flex_mem")
     ids = sorted(handler.nodes)
     index = {node_id: i for i, node_id in enumerate(ids)}
+    @lru_cache(maxsize=64)
+    def tile_pair(x,y):
+        root=Path('public/data/terrain');p=root/f'official/17/{x}/{y}.png';s=root/f'sources/17/{x}/{y}.png'
+        if not p.exists() or not s.exists():return None
+        with Image.open(p) as a,Image.open(s) as b:return a.convert('RGB').copy(),b.convert('L').copy()
+    def elevation(lon,lat):
+        n=2**17;xf=(lon+180)/360*n;yf=(1-math.asinh(math.tan(math.radians(lat)))/math.pi)/2*n;x,y=int(xf),int(yf);pair=tile_pair(x,y)
+        if pair is None:return None,0
+        px,py=int((xf-x)*256),int((yf-y)*256);rgb=pair[0].getpixel((px,py));code=pair[1].getpixel((px,py));v=rgb[0]*65536+rgb[1]*256+rgb[2]
+        if v==8388608 or not code:return None,0
+        return round((v-16777216 if v>8388608 else v)*.01,2),code
+    samples=[elevation(*handler.nodes[node_id]) for node_id in ids]
     document = {
         "schema": 1,
         "source": "OpenStreetMap contributors (ODbL 1.0)",
@@ -109,6 +126,10 @@ def main() -> None:
         "bbox": BBOX,
         "nodes": [handler.nodes[node_id] for node_id in ids],
         "edges": [[index[a], index[b], direction] for a, b, direction in handler.edges],
+        "edgeTerrain": handler.edge_terrain,
+        "elevations": [h for h,_ in samples],
+        "elevationSources": [code for _,code in samples],
+        "elevationModel": "Official GSI priority terrain cells only; bridge/tunnel/steps excluded from slope cost; missing uses flat speed",
     }
     TARGET.parent.mkdir(parents=True, exist_ok=True)
     TARGET.write_text(json.dumps(document, separators=(",", ":")), encoding="utf-8")

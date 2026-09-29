@@ -2,8 +2,10 @@ import type {FeatureCollection,LineString} from 'geojson';
 
 export interface WalkingNetwork {
  schema:number;sourceDate:string;nodes:[number,number][];edges:[number,number,number][];
+ elevations?:(number|null)[];elevationSources?:number[];edgeTerrain?:boolean[];
 }
-export interface WalkingResult { lines:FeatureCollection<LineString>;snapMeters:number;segments:number; }
+export type WalkingMode='flat'|'slope';
+export interface WalkingResult { lines:FeatureCollection<LineString>;snapMeters:number;segments:number;mode:WalkingMode;slopeAppliedEdges:number;slopeFallbackEdges:number; }
 const SPEED_METERS_PER_MINUTE=4000/60;
 const MAX_SNAP_METERS=100;
 const empty=():FeatureCollection<LineString>=>({type:'FeatureCollection',features:[]});
@@ -27,7 +29,12 @@ class Heap {
  pop():[number,number]|undefined{const top=this.data[0],last=this.data.pop();if(!this.data.length||!last)return top;let i=0;while(true){let c=i*2+1;if(c>=this.data.length)break;if(c+1<this.data.length&&this.data[c+1][0]<this.data[c][0])c++;if(last[0]<=this.data[c][0])break;this.data[i]=this.data[c];i=c;}this.data[i]=last;return top;}
  get size(){return this.data.length;}
 }
-export function walkingReach(point:[number,number],minutes:number,network:WalkingNetwork):WalkingResult|null{
+/** Tobler (1993), normalized to 4 km/h on flat roads: 4*exp(-3.5*(abs(s+0.05)-0.05)).
+ * This is an illustrative walking-cost model, not a validated evacuation speed.
+ * Source: https://escholarship.org/uc/item/05r820mz
+ */
+export function slopeWalkingSpeed(grade:number){return Math.max(.5,Math.min(6,4*Math.exp(-3.5*(Math.abs(grade+.05)-.05))));}
+export function walkingReach(point:[number,number],minutes:number,network:WalkingNetwork,mode:WalkingMode='flat'):WalkingResult|null{
  if(!Number.isFinite(minutes)||minutes<1||minutes>60||network.schema!==1||!network.nodes.length||!network.edges.length)return null;
  const nodes=network.nodes,edges=network.edges,budget=minutes*SPEED_METERS_PER_MINUTE;
  let best:{edge:number;t:number;distance:number;snapped:[number,number]}|null=null;
@@ -37,29 +44,38 @@ export function walkingReach(point:[number,number],minutes:number,network:Walkin
  }
  if(!best||best.distance>MAX_SNAP_METERS)return null;
  const adjacency:{to:number;length:number}[][]=Array.from({length:nodes.length},()=>[]);
- const lengths=new Float64Array(edges.length);
- edges.forEach(([a,b,d],i)=>{const length=meters(nodes[a],nodes[b]);lengths[i]=length;if(d>=0)adjacency[a].push({to:b,length});if(d<=0)adjacency[b].push({to:a,length});});
+ const lengths=new Float64Array(edges.length),forward=new Float64Array(edges.length),backward=new Float64Array(edges.length),slopeApplied=new Set<number>();
+ edges.forEach(([a,b,d],i)=>{
+  const length=meters(nodes[a],nodes[b]);lengths[i]=length;let f=length,r=length;
+  const ah=network.elevations?.[a],bh=network.elevations?.[b];
+  if(mode==='slope'&&network.edgeTerrain?.[i]!==false&&typeof ah==='number'&&typeof bh==='number'&&Number.isFinite(ah)&&Number.isFinite(bh)&&length>=5){
+   const grade=(bh-ah)/length;
+   if(Math.abs(grade)<=.5){f=length*4/slopeWalkingSpeed(grade);r=length*4/slopeWalkingSpeed(-grade);slopeApplied.add(i);}
+  }
+  forward[i]=f;backward[i]=r;if(d>=0)adjacency[a].push({to:b,length:f});if(d<=0)adjacency[b].push({to:a,length:r});
+ });
  const distances=new Float64Array(nodes.length).fill(Infinity),queue=new Heap();
- const [startA,startB,startDir]=edges[best.edge],startLength=lengths[best.edge];
+ const [startA,startB,startDir]=edges[best.edge];
  const seed=(index:number,distance:number)=>{if(distance<=budget&&distance<distances[index]){distances[index]=distance;queue.push([distance,index]);}};
- if(startDir<=0)seed(startA,best.distance+best.t*startLength);
- if(startDir>=0)seed(startB,best.distance+(1-best.t)*startLength);
+ if(startDir<=0)seed(startA,best.distance+best.t*backward[best.edge]);
+ if(startDir>=0)seed(startB,best.distance+(1-best.t)*forward[best.edge]);
  while(queue.size){const [distance,index]=queue.pop()!;if(distance!==distances[index])continue;for(const next of adjacency[index]){const n=distance+next.length;if(n<=budget&&n<distances[next.to]){distances[next.to]=n;queue.push([n,next.to]);}}}
- const lines=empty();
- const add=(a:[number,number],b:[number,number])=>{if(meters(a,b)>0.5)lines.features.push({type:'Feature',properties:{},geometry:{type:'LineString',coordinates:[a,b]}});};
+ const lines=empty(),reached=new Set<number>();
+ const add=(a:[number,number],b:[number,number],edge:number)=>{if(meters(a,b)>0.5){reached.add(edge);lines.features.push({type:'Feature',properties:{slopeApplied:slopeApplied.has(edge)},geometry:{type:'LineString',coordinates:[a,b]}});}};
  edges.forEach(([a,b,d],i)=>{
   const length=lengths[i];if(length<0.5)return;
-  const left=d>=0?Math.max(0,Math.min(1,(budget-distances[a])/length)):0;
-  const right=d<=0?Math.max(0,Math.min(1,(budget-distances[b])/length)):0;
+  const left=d>=0?Math.max(0,Math.min(1,(budget-distances[a])/forward[i])):0;
+  const right=d<=0?Math.max(0,Math.min(1,(budget-distances[b])/backward[i])):0;
   if(i===best.edge){
-   const fromStart=Math.max(0,budget-best.distance)/length;
+   const available=Math.max(0,budget-best.distance);
    // The start lies inside this edge: connect its directly reachable parts.
-   if(d<=0)add(interpolate(nodes[a],nodes[b],Math.max(0,best.t-fromStart)),best.snapped);
-   if(d>=0)add(best.snapped,interpolate(nodes[a],nodes[b],Math.min(1,best.t+fromStart)));
+   if(d<=0)add(interpolate(nodes[a],nodes[b],Math.max(0,best.t-available/backward[i])),best.snapped,i);
+   if(d>=0)add(best.snapped,interpolate(nodes[a],nodes[b],Math.min(1,best.t+available/forward[i])),i);
   }
-  if(left+right>=1){add(nodes[a],nodes[b]);return;}
-  if(left>0)add(nodes[a],interpolate(nodes[a],nodes[b],left));
-  if(right>0)add(interpolate(nodes[a],nodes[b],1-right),nodes[b]);
+  if(left+right>=1){add(nodes[a],nodes[b],i);return;}
+  if(left>0)add(nodes[a],interpolate(nodes[a],nodes[b],left),i);
+  if(right>0)add(interpolate(nodes[a],nodes[b],1-right),nodes[b],i);
  });
- return {lines,snapMeters:best.distance,segments:lines.features.length};
+ const applied=[...reached].filter(i=>slopeApplied.has(i)).length;
+ return {lines,snapMeters:best.distance,segments:lines.features.length,mode,slopeAppliedEdges:applied,slopeFallbackEdges:mode==='slope'?reached.size-applied:0};
 }
