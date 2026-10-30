@@ -1,0 +1,74 @@
+import {readFileSync} from 'node:fs';
+import {booleanPointInPolygon,centroid} from '@turf/turf';
+import {test,expect} from '@playwright/test';
+
+test('dashboard compares individual scenarios and retains the selected point',async({page})=>{
+ const data=JSON.parse(readFileSync('public/data/tsunami.geojson','utf8'));
+ const boundary=JSON.parse(readFileSync('public/data/boundary.geojson','utf8'));
+ const feature=data.features.find((f:Parameters<typeof booleanPointInPolygon>[1])=>booleanPointInPolygon(centroid(f),f,{ignoreBoundary:true})&&boundary.features.some((b:Parameters<typeof booleanPointInPolygon>[1])=>booleanPointInPolygon(centroid(f),b)));
+ const [lng,lat]=centroid(feature).geometry.coordinates;
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(`/#lat=${lat}&lng=${lng}&zoom=15&layers=tsunami,boundary,emergency&terrain=0`);
+ await expect(page.getByTestId('map-status')).toContainText('地図操作が可能');
+ await page.getByRole('button',{name:'浸水ダッシュボード',exact:true}).click();
+ const dashboard=page.locator('#inundation-dashboard');
+ await expect(dashboard).toBeVisible();
+ await expect(dashboard).toContainText('複合浸水の計算結果ではなく');
+ const tsunami=dashboard.locator('section.flood-dashboard-card').filter({hasText:'津波浸水想定'});
+ const flood=dashboard.locator('section.flood-dashboard-card').filter({hasText:'洪水浸水想定'});
+ await dashboard.getByRole('button',{name:'地図の中央を調べる'}).click();
+ await expect(dashboard).toBeVisible();
+ await expect(tsunami).toContainText('想定区域に該当');
+ await expect(tsunami).toContainText(feature.properties.classLabel);
+ await expect(flood).toContainText('判定データなし');
+ await expect(flood).toContainText('小漕川');
+ await expect(flood.getByRole('link',{name:'県の公式図を開く'})).toHaveAttribute('href','https://www.pref.ehime.jp/site/kouzuishinsusoutei/141959.html');
+ await page.screenshot({path:'docs/screenshots/inundation-dashboard-desktop.png'});
+ await flood.getByRole('button',{name:'地図に表示',exact:true}).click();
+ await expect(flood.getByRole('button',{name:'地図から非表示'})).toHaveAttribute('aria-pressed','true');
+ await expect(tsunami.getByRole('button',{name:'地図に表示'})).toHaveAttribute('aria-pressed','false');
+ await expect(dashboard).toContainText(lat.toFixed(6));
+ const previous=await dashboard.locator('.flood-dashboard-point p').innerText();
+ await page.locator('.maplibregl-canvas').click({position:{x:700,y:400}});
+ await expect(dashboard).toBeVisible();
+ await expect(dashboard.locator('.flood-dashboard-point p')).not.toHaveText(previous);
+ await page.getByRole('button',{name:'浸水ダッシュボードを閉じる'}).click();
+ await page.getByRole('button',{name:'レイヤーを選ぶ',exact:false}).click();
+ await expect(page.getByRole('checkbox',{name:'指定緊急避難場所',exact:true})).toBeChecked();
+ await expect(page.getByRole('checkbox',{name:'津波浸水想定',exact:true})).not.toBeChecked();
+ await expect(page.getByRole('checkbox',{name:'洪水浸水想定（想定最大規模）',exact:true})).toBeChecked();
+ expect(errors).toEqual([]);
+});
+
+test('dashboard is usable on a phone with 3D enabled',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/#lat=34.26&lng=133.206&zoom=14&layers=boundary&terrain=1');
+ await expect(page.getByTestId('map-status')).toContainText('地図操作が可能');
+ await expect(page.getByTestId('map-status')).toContainText('3D');
+ await page.getByRole('button',{name:'浸水ダッシュボード',exact:true}).click();
+ const dashboard=page.locator('#inundation-dashboard');
+ await expect(dashboard).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ const geometry=await dashboard.boundingBox();
+ expect(geometry?.height).toBeLessThan(500);
+ await dashboard.getByRole('button',{name:'地図の中央を調べる'}).click();
+ await expect(dashboard).toBeVisible();
+ await expect(dashboard).toContainText('緯度');
+ await page.screenshot({path:'docs/screenshots/inundation-dashboard-mobile.png'});
+ await dashboard.locator('.flood-dashboard-body').evaluate(element=>{element.scrollTop=element.scrollHeight;});
+ await expect(dashboard.getByRole('link',{name:'愛媛県の洪水浸水想定図'})).toBeInViewport();
+ await page.keyboard.press('Escape');
+ await expect(dashboard).toHaveCount(0);
+});
+
+test('missing tsunami data is shown as unavailable',async({page})=>{
+ await page.route('**/data/tsunami.geojson',route=>route.abort());
+ await page.goto('/#layers=tsunami,boundary&terrain=0');
+ await expect(page.getByTestId('map-status')).toContainText('地図操作が可能');
+ await page.getByRole('button',{name:'浸水ダッシュボード',exact:true}).click();
+ const dashboard=page.locator('#inundation-dashboard');
+ await dashboard.getByRole('button',{name:'地図の中央を調べる'}).click();
+ const tsunami=dashboard.locator('.flood-dashboard-card').filter({hasText:'津波浸水想定'});
+ await expect(tsunami).toContainText('判定データを取得できません');
+ await expect(tsunami).not.toContainText('想定区域に非該当');
+});
