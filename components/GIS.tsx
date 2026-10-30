@@ -11,6 +11,7 @@ import {officialElevationAt,type ElevationSample} from '@/lib/elevation';
 import {initialTwin,type TwinSettings} from '@/lib/digital-twin';
 import TwinPanel from './TwinPanel';
 import FacilityInfo from './FacilityInfo';
+import InundationDashboard from './InundationDashboard';
 import {facilityKinds} from '@/lib/facility-labels';
 import {walkingReach,type WalkingNetwork,type WalkingResult,type WalkingMode} from '@/lib/walking';
 import type {Area,Facilities,HazardResult,Layer,ViewState} from '@/lib/types';
@@ -39,7 +40,8 @@ export default function GIS(){
  useEffect(()=>()=>walkingWorker.current?.terminate(),[]);
  const walkingRequest=useRef(0);
  const [destination,setDestination]=useState<{lng:number;lat:number;zoom:number;sequence:number}|null>(null);
- const [panel,setPanel]=useState<'layers'|'details'|null>(null),[source,setSource]=useState<string|null>(null),[notice,setNotice]=useState('');
+ const [panel,setPanel]=useState<'layers'|'details'|'dashboard'|null>(null),[source,setSource]=useState<string|null>(null),[notice,setNotice]=useState('');
+ const dashboardTrigger=useRef<HTMLButtonElement>(null);
  const dialog=useRef<HTMLDialogElement>(null),[query,setQuery]=useState(''),[searchOpen,setSearchOpen]=useState(false);
  const [coordinate,setCoordinate]=useState({lat:'34.257',lng:'133.204'});
  const [printOrientation,setPrintOrientation]=useState('landscape');
@@ -66,8 +68,8 @@ export default function GIS(){
   return()=>{current=false;clearTimeout(timer);c.abort();};
  },[selectedPoint]);
  useEffect(()=>{if(source)dialog.current?.showModal();else dialog.current?.close();},[source]);
- useEffect(()=>{if(panel!=='layers'&&!twinOpen)return;const close=(event:KeyboardEvent)=>{if(event.key==='Escape'){setPanel(null);setTwinOpen(false);}};window.addEventListener('keydown',close);return()=>window.removeEventListener('keydown',close);},[panel,twinOpen]);
- const selectPoint=useCallback((p:[number,number])=>{walkingRequest.current++;setSelectedFacility(null);setSelectedBuilding(null);setAccuracy(null);setSelectedParcel(null);setSelectedPoint(p);setWalking(null);setWalkStatus('');setCoordinate({lat:p[1].toFixed(6),lng:p[0].toFixed(6)});setPanel('details');},[]);
+ useEffect(()=>{if(panel!=='layers'&&panel!=='dashboard'&&!twinOpen)return;const close=(event:KeyboardEvent)=>{if(event.key==='Escape'){if(panel==='dashboard')dashboardTrigger.current?.focus();setPanel(null);setTwinOpen(false);}};window.addEventListener('keydown',close);return()=>window.removeEventListener('keydown',close);},[panel,twinOpen]);
+ const selectPoint=useCallback((p:[number,number])=>{walkingRequest.current++;setSelectedFacility(null);setSelectedBuilding(null);setAccuracy(null);setSelectedParcel(null);setSelectedPoint(p);setWalking(null);setWalkStatus('');setCoordinate({lat:p[1].toFixed(6),lng:p[0].toFixed(6)});setPanel(old=>old==='dashboard'?'dashboard':'details');},[]);
  const calculateWalking=async()=>{
   if(!selectedPoint||!Number.isInteger(walkMinutes)||walkMinutes<1||walkMinutes>60){setWalkStatus('徒歩時間は1～60分の整数で指定してください。');return;}
   const request=++walkingRequest.current;
@@ -96,6 +98,7 @@ export default function GIS(){
   return ['public-facilities','emergency','shelter'].flatMap(id=>((datasets[id] as Facilities)?.features??[]).map(f=>({id,feature:f}))).filter(({feature:f})=>`${f.properties?.name} ${f.properties?.address}`.normalize('NFKC').includes(q)).slice(0,12);
  },[query,datasets]);
  const toggle=(id:string)=>setView(old=>({...old,scenario:'custom',layers:old.layers.includes(id)?old.layers.filter(x=>x!==id):[...old.layers,id]}));
+ const showInundation=(id:string)=>setView(old=>({...old,scenario:'custom',layers:old.layers.includes(id)?old.layers.filter(x=>x!==id):[...old.layers.filter(x=>!['tsunami','flood','surge'].includes(x)),id]}));
  const geolocate=()=>{
   if(!window.isSecureContext){setNotice('LANのHTTP接続では現在地を利用できません。地図クリック・座標入力・施設検索をご利用ください。');return;}
   if(!navigator.geolocation){setNotice('このブラウザでは現在地を取得できません。');return;}
@@ -136,7 +139,8 @@ export default function GIS(){
    </aside>
    <section className="map-region" aria-label="地図と表示状態">
     {initialized&&<Map view={view} twin={twin} accuracy={accuracy} onFacility={setSelectedFacility} onBuilding={setSelectedBuilding} onTerrainFallback={terrainFallback} selected={view.layers} opacity={opacity} datasets={datasets} walking={walking?.lines??null} destination={destination} point={selectedPoint} onSelect={selectPoint} onParcel={setSelectedParcel} onMove={onMove} onError={onError} onReady={()=>setMapReady(true)} onTerrainMissing={()=>setTerrainMissing(true)} onTerrainFailure={terrainFailure}/>}
-    <div className="map-top-actions"><button className="layers-trigger" aria-controls="layer-panel" aria-expanded={panel==='layers'} onClick={()=>{setTwinOpen(false);setPanel(panel==='layers'?null:'layers');}}>☷ レイヤーを選ぶ <b>{view.layers.length}</b></button><button onClick={()=>moveTo(initialView.lng,initialView.lat,initialView.zoom)}>⌖ 町全域</button><button onClick={()=>selectPoint([view.lng,view.lat])}>＋ 地点判定（中央）</button><button aria-pressed={view.terrain} onClick={()=>{setTerrainMissing(false);setView(old=>({...old,terrain:!old.terrain}));setTwinOpen(false);}}>{view.terrain?'2Dに戻す':'3D地形'}</button>{view.terrain&&<button className="twin-trigger" aria-expanded={twinOpen} onClick={()=>{setPanel(null);setTwinOpen(!twinOpen);}}>3D設定</button>}</div>
+    <div className="map-top-actions"><button className="layers-trigger" aria-controls="layer-panel" aria-expanded={panel==='layers'} onClick={()=>{setTwinOpen(false);setPanel(panel==='layers'?null:'layers');}}>☷ レイヤーを選ぶ <b>{view.layers.length}</b></button><button ref={dashboardTrigger} className="flood-dashboard-trigger" aria-controls="inundation-dashboard" aria-expanded={panel==='dashboard'} onClick={()=>{setTwinOpen(false);setPanel(panel==='dashboard'?null:'dashboard');}}>浸水ダッシュボード</button><button onClick={()=>moveTo(initialView.lng,initialView.lat,initialView.zoom)}>⌖ 町全域</button><button onClick={()=>selectPoint([view.lng,view.lat])}>＋ 地点判定（中央）</button><button aria-pressed={view.terrain} onClick={()=>{setTerrainMissing(false);setView(old=>({...old,terrain:!old.terrain}));setTwinOpen(false);}}>{view.terrain?'2Dに戻す':'3D地形'}</button>{view.terrain&&<button className="twin-trigger" aria-expanded={twinOpen} onClick={()=>{setPanel(null);setTwinOpen(!twinOpen);}}>3D設定</button>}</div>
+    {panel==='dashboard'&&<InundationDashboard layers={layers.filter(l=>['tsunami','flood','surge'].includes(l.id))} activeLayers={view.layers} results={results} selectedPoint={selectedPoint} loading={loading} errors={errors} onShow={showInundation} onClose={()=>{setPanel(null);dashboardTrigger.current?.focus();}} onSource={setSource} onSelectCenter={()=>selectPoint([view.lng,view.lat])}/>}
     {twinOpen&&view.terrain&&<TwinPanel value={twin} onChange={setTwin} onClose={()=>setTwinOpen(false)} onFly={(lng,lat,zoom)=>{moveTo(lng,lat,zoom);setTwinOpen(false);}} onData={()=>setSource('all')}/>}
     <div className="mobile-tabs"><button aria-expanded={panel==='layers'} onClick={()=>{setTwinOpen(false);setPanel(panel==='layers'?null:'layers');}}>☷ レイヤー <b>{view.layers.length}</b></button><button aria-expanded={panel==='details'} onClick={()=>{setTwinOpen(false);setPanel(panel==='details'?null:'details');}}>⌖ 地点情報</button></div>
    </section>
