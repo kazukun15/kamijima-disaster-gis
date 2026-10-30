@@ -78,3 +78,28 @@
 @media(max-width:768px){.facility-landmark{max-width:190px;min-height:44px;font-size:12px}}
 
 .facility-landmark span{display:block;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+
+/* NOAA-inspired overview: keep the map available while reviewing scenarios. */
+.map-top-actions .flood-dashboard-trigger{background:#e9f5f5;border-color:#89bab9;color:#125355;font-weight:700}
+.map-top-actions .flood-dashboard-trigger[aria-expanded=true]{background:#176c69;color:#fff}
+.flood-dashboard{position:absolute;z-index:17;left:12px;top:66px;bottom:12px;width:min(430px,calc(100% - 24px));display:flex;flex-direction:column;background:#fff;border:1px solid #b7d0ca;border-radius:14px;box-shadow:0 16px 44px #173b4538;overflow:hidden}
+.flood-dashboard-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line);background:#f5faf8}
+.flood-dashboard-header h2{font-size:18px}.flood-dashboard-header button{white-space:nowrap;min-height:40px;padding:7px 10px}
+.flood-dashboard-eyebrow{font-size:9px;letter-spacing:1.5px;color:#427775;font-weight:700;margin:0 0 4px}
+.flood-dashboard-body{overflow:auto;min-height:0;padding:14px 16px 20px;overscroll-behavior:contain}
+.flood-dashboard-intro,.flood-dashboard-notice,.flood-dashboard-note{font-size:12px;line-height:1.7;margin:0 0 12px}
+.flood-dashboard-notice{padding:10px 12px;border-left:3px solid #bf8e36;background:#fff8eb;color:#674d22;border-radius:4px}
+.flood-dashboard-point{padding:12px;border-radius:9px;background:#eaf5f3;margin-bottom:13px}
+.flood-dashboard-point h3{font-size:13px}.flood-dashboard-point p{font-size:12px;margin:5px 0 9px;overflow-wrap:anywhere}
+.flood-dashboard-point button{min-height:40px;font-size:12px;background:#176c69;color:#fff;border-color:#176c69}
+.flood-dashboard-cards{display:grid;gap:10px}.flood-dashboard-card{border:1px solid #cbded8;border-radius:10px;padding:12px;background:#fff}
+.flood-dashboard-card-heading{display:flex;gap:8px;justify-content:space-between;align-items:flex-start}.flood-dashboard-card-heading h3{font-size:14px;line-height:1.5}.flood-dashboard-card-heading span{white-space:nowrap;font-size:10px;padding:3px 6px;color:#426a68;background:#eef5f2;border-radius:4px}
+.flood-dashboard-card p{font-size:12px;line-height:1.6;margin:7px 0}.flood-dashboard-date{color:#536d69}.flood-dashboard-card-actions{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.flood-dashboard-card .flood-dashboard-rivers{padding:9px 10px;border-radius:7px;background:#f3f7fb}.flood-dashboard-rivers a{display:block;margin-top:5px}
+.flood-dashboard-card-actions button{font-size:12px;min-height:40px}.flood-dashboard-card-actions button[aria-pressed=true]{background:#176c69;color:white;border-color:#176c69}
+.flood-dashboard-result{padding:9px 10px;border-radius:7px;background:#f2f7f5;font-size:12px}.flood-dashboard-result strong{font-size:12px}.flood-dashboard-result p:last-child{margin-bottom:0}
+.flood-dashboard-legend{margin-top:9px;font-size:12px}.flood-dashboard-legend summary{cursor:pointer;min-height:40px;display:flex;align-items:center;font-weight:600}.flood-dashboard-legend img{max-width:100%;height:auto;display:block}.flood-dashboard-legend span{display:flex;gap:7px;align-items:center;margin:5px 0}.flood-dashboard-legend i{width:13px;height:13px;border:1px solid #0003;border-radius:2px;flex-shrink:0}.flood-dashboard-legend a{display:block;margin-top:7px}
+.flood-dashboard-note{margin-top:13px}.flood-dashboard-links{display:flex;flex-direction:column;gap:8px;font-size:12px}
+@media(max-width:900px){.flood-dashboard{top:auto;bottom:75px;left:12px;right:12px;width:auto;max-height:min(48%,480px)}}
+@media(max-width:600px){.flood-dashboard{left:6px;right:6px;bottom:73px;max-height:45%}.flood-dashboard-header{padding:9px 12px}.flood-dashboard-header h2{font-size:16px}.flood-dashboard-body{padding:12px}}
+@media print{.flood-dashboard{display:none!important}}
