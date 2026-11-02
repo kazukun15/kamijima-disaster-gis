@@ -18,6 +18,7 @@ export interface MapProps {
  twin:TwinSettings;accuracy:{lng:number;lat:number;meters:number}|null;onBuilding:(properties:Record<string,unknown>|null)=>void;onTerrainFallback:()=>void;
  view:ViewState; selected:string[]; opacity:Record<string,number>; datasets:Record<string,FeatureCollection>; walking:FeatureCollection<LineString>|null;
  destination:{lng:number;lat:number;zoom:number;sequence:number}|null; point:[number,number]|null;
+ onTerrainPartialFailure:()=>void;
  onSelect:(p:[number,number])=>void; onMove:(v:{lng:number;lat:number;zoom:number})=>void;
  onError:(id:string)=>void; onReady:()=>void; onTerrainMissing:()=>void; onTerrainFailure:()=>void;
  onParcel:(properties:Record<string,unknown>|null)=>void;
@@ -47,7 +48,10 @@ export default function MapView(props:MapProps){
   m.doubleClickZoom.disable();m.on('dblclick',e=>{e.preventDefault();m.flyTo({center:e.lngLat,zoom:Math.min(18,m.getZoom()+2)});});
   m.on('click',e=>{callbacks.current.onSelect([e.lngLat.lng,e.lngLat.lat]);const facilityLayers=Object.keys(facilityKinds).filter(id=>m.getLayer(id));const hit=facilityLayers.length?m.queryRenderedFeatures([[e.point.x-8,e.point.y-8],[e.point.x+8,e.point.y+8]],{layers:facilityLayers})[0]:undefined;if(hit){const original=callbacks.current.datasets[hit.source]?.features.find(f=>f.properties?.name===hit.properties.name);callbacks.current.onFacility({...original?.properties,facilityKind:facilityKinds[hit.source]});}const features=m.getLayer('cadastral')?m.queryRenderedFeatures([[e.point.x-3,e.point.y-3],[e.point.x+3,e.point.y+3]],{layers:['cadastral']}):[];callbacks.current.onParcel(features[0]?.properties??null);const buildingLayers=['buildings-3d','buildings-flat'].filter(id=>m.getLayer(id));callbacks.current.onBuilding(buildingLayers.length?m.queryRenderedFeatures(e.point,{layers:buildingLayers})[0]?.properties??null:null);});
   m.on('moveend',()=>{const c=m.getCenter();callbacks.current.onMove({lng:c.lng,lat:c.lat,zoom:m.getZoom()});});
-  m.on('error',e=>{const id=(e as typeof e & {sourceId?:string}).sourceId??'map';callbacks.current.onError(id);if(id==='terrain-dem')callbacks.current.onTerrainFailure();});
+  m.on('error',e=>{const id=(e as typeof e & {sourceId?:string}).sourceId??'map';
+   if(id==='terrain-dem'){callbacks.current.onTerrainPartialFailure();return;}
+   callbacks.current.onError(id);
+  });
   m.on('style.load',()=>{setReady(true);callbacks.current.onReady();});
   const resize=new ResizeObserver(()=>m.resize());resize.observe(container.current);
   const printResize=()=>m.resize();window.addEventListener('beforeprint',printResize);window.addEventListener('afterprint',printResize);

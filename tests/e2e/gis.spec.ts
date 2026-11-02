@@ -7,6 +7,7 @@ test('map opens, layer toggle, point details and original sources',async({page})
  await expect(page.getByTestId('map-status')).toContainText('地図操作が可能');
  await openLayers(page);
  await page.getByRole('checkbox',{name:'土砂災害警戒区域',exact:true}).check();
+ await page.locator('.layer-item').filter({has:page.getByRole('checkbox',{name:'土砂災害警戒区域',exact:true})}).getByText('凡例・不透明度').click();
  await expect(page.getByRole('slider',{name:'土砂災害警戒区域の不透明度'})).toBeVisible();
  await page.getByRole('button',{name:'この地点を調べる',exact:false}).click();
  await expect(page.getByText('種類の想定区域への該当を確認')).toBeVisible();
@@ -135,11 +136,11 @@ test('DEM terrain with aerial imagery can return to 2D',async({page})=>{
  await page.getByRole('button',{name:'地点判定（中央）',exact:false}).click();await expect(page.locator('.point-summary')).toBeVisible();
  await page.getByRole('button',{name:'2Dに戻す',exact:true}).click();await expect(page.getByTestId('map-status')).toContainText('2D');expect(errors).toEqual([]);
 });
-test('DEM network failure returns to 2D with an explanation',async({page})=>{
+test('DEM network failure explains missing terrain while preserving the view',async({page})=>{
  await page.route('**/dem_png/**',route=>route.abort());
  await page.route('**/data/terrain/visual/**',route=>route.abort());
  await page.goto('/#lat=34.26&lng=133.206&zoom=14&terrain=0');await expect(page.getByTestId('map-status')).toContainText('地図操作が可能');
- await page.getByRole('button',{name:'3D地形',exact:true}).click();await expect(page.getByText('地形データを取得できないため2D表示に戻しました。')).toBeVisible();await expect(page.getByTestId('map-status')).toContainText('2D');
+ await page.getByRole('button',{name:'3D地形',exact:true}).click();await expect(page.getByText('地形データを取得できない箇所があります。地形が平坦に見える場合があります。')).toBeVisible();await expect(page.getByTestId('map-status')).toContainText('3D');await page.getByRole('button',{name:'2Dに戻す',exact:true}).click();await expect(page.getByTestId('map-status')).toContainText('2D');
 });
 test('mobile layer sheet remains usable in 3D',async({page})=>{
  await page.setViewportSize({width:390,height:844});
@@ -163,8 +164,29 @@ test('tsunami polygons display over aerial imagery and report native depth',asyn
  await page.goto(`/#lat=${lat}&lng=${lng}&zoom=15&basemap=photo&layers=tsunami,boundary`);await response;
  await openLayers(page);
  await expect(page.getByRole('checkbox',{name:'津波浸水想定',exact:true})).toBeChecked();
+ await page.locator('.layer-item').filter({has:page.getByRole('checkbox',{name:'津波浸水想定',exact:true})}).getByText('凡例・不透明度').click();
  await expect(page.getByRole('slider',{name:'津波浸水想定の不透明度'})).toBeVisible();
  await page.getByLabel('緯度',{exact:true}).fill(String(lat));await page.getByLabel('経度',{exact:true}).fill(String(lng));await page.getByRole('button',{name:'この地点を調べる',exact:false}).click();
  const result=page.locator('.hazard-result').filter({hasText:'津波浸水想定'});await expect(result).toContainText('想定区域に該当');await expect(result).toContainText(feature.properties.classLabel);await expect(result).toContainText('2016年度版');
  await page.waitForLoadState('networkidle');await page.screenshot({path:'docs/screenshots/tsunami.png',fullPage:true});
+});
+
+
+test('layer list filters visible layers and keeps details accessible',async({page})=>{
+ await page.goto('/#layers=tsunami,boundary&terrain=0');
+ await expect(page.getByTestId('map-status')).toContainText('地図操作が可能');
+ await openLayers(page);
+ const panel=page.getByRole('complementary',{name:'レイヤー'});
+ const tsunami=panel.locator('.layer-item').filter({has:page.getByRole('checkbox',{name:'津波浸水想定',exact:true})});
+ await expect(tsunami.getByText('国土数値情報2016年度版', {exact:false})).toBeVisible();
+ await expect(tsunami.getByRole('slider')).toBeHidden();
+ await tsunami.getByText('凡例・不透明度').click();
+ await expect(tsunami.getByRole('slider')).toBeVisible();
+ await panel.getByRole('button',{name:'表示中',exact:false}).click();
+ await expect(panel.getByRole('checkbox',{name:'津波浸水想定',exact:true})).toBeChecked();
+ await expect(panel.getByRole('checkbox',{name:'土砂災害警戒区域',exact:true})).toHaveCount(0);
+ await panel.getByRole('button',{name:'すべて',exact:true}).click();
+ await expect(panel.getByRole('checkbox',{name:'土砂災害警戒区域',exact:true})).toBeVisible();
+ await panel.getByRole('button',{name:'レイヤーを閉じる'}).click();
+ await expect(page.getByRole('button',{name:'レイヤーを選ぶ',exact:false})).toBeFocused();
 });
